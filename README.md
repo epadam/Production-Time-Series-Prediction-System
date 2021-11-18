@@ -27,3 +27,6 @@ You can use streamlit as the interface to check the api
 3. data drift alert
 
 you can also check the statistics of the model by deploying prometheus and grafana
+
+
+<sys.png/>
