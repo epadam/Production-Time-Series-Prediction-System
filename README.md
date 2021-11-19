@@ -18,7 +18,7 @@ Model Developing Process
 
 7. Retrain the model when new data is available or concept drift happened (Kubeflow Pipeline, here we use the other half data)
 
-8. When update the code of retraining pipeline, trigger github actions to test the retraining pipeline, followed by CD to the test environment and finally deploy it in production 
+8. When updating the code of retraining pipeline or detecting concept drift, trigger github actions to test the retraining pipeline, followed by CD to the test environment and finally deploy it in production 
 
 You can use streamlit as the interface to check the api
 
