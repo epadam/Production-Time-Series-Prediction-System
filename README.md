@@ -15,6 +15,8 @@ Model Developing Process
 5. Once done model development, developing CI/CD/CT for the model (mlrun, tfx, kubeflow pipeline, github actions)
 CI with github actions:
 
+a. set up env. secret in github secrets
+
 https://github.com/NikeNano/kubeflow-github-action
 
 https://github.com/kubeflow/examples/tree/master/pipelines/github_action
