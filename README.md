@@ -35,7 +35,14 @@ You can use streamlit as the interface to check the api
 2. explain the result
 3. data drift alert
 
+
+## Environment for MLOps
+1. set up kubeflow(Come with Seldon, minIO, Istio), mlflow, and storage
+
+
+
 you can also check the statistics of the model by deploying prometheus and grafana
+
 
 
 ![](sys.png)
