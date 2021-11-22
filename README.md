@@ -2,9 +2,9 @@
 
 Here we use adults income dataset as example
 
-Model Developing Process
+## Model Developing Process
 
-1. Data Collection (You will denmamize customers personal information from database)
+1. Data Collection (You will denmamize customers personal information from database) Dockerize your code
 
 2. ETL (transform the format you need and store in feature store)
 
@@ -25,6 +25,8 @@ https://github.com/marketplace/actions/kubeflow-compile-deploy-and-run
 
 6. Deploy the model and monitor it (Seldon Core(outlier detection, explainer), Prometheus, on kubernetes)
 
+you can also check the statistics of the model by deploying prometheus and grafana
+
 7. Retrain the model when new data is available or concept drift happened (Kubeflow Pipeline, here we use the other half data)
 
 8. When updating the code of retraining pipeline or detecting concept drift, trigger github actions to test the retraining pipeline, followed by CD to the test environment and finally deploy it in production 
@@ -37,12 +39,15 @@ You can use streamlit as the interface to check the api
 
 
 ## Environment for MLOps
-1. set up kubeflow(Come with Seldon, minIO, Istio), mlflow, and storage
+
+Please follow this repo to set up the environment on an instance or a kubernetes cluster
+https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
 
 
-you can also check the statistics of the model by deploying prometheus and grafana
 
 
 
-![](sys.png)
+
+
+
