@@ -8,23 +8,15 @@
 
 ### Machine Learning
 
-You can use MLflow to track, store and serve your model on your instance, this includes
+1. You can use MLflow to track, store and serve your model on your instance, this includes a Mlflow Server, MinIO Server, Artifact Store using minIO on s3, gcs (as model registry), Backstore using local file or database (for meta data)
 
-1. Mlflow Server
+Test your mlflow deployment
 
-2. MinIO Server
+2. For model serving, you can also use Tensroflow Serving or TorchServe
 
-3. Artifact Store using minIO on s3, gcs (as model registry)
+3. Monitoring using ELK, Prometheus
 
-4. Backstore using local file or database (for meta data)
-
-For model serving, you can also use Tensroflow Serving or TorchServe
-
-Monitoring using ELK, Prometheus
-
-Test your mlflow deployment following the steps below.
-
-Optional: Jenkins for CI/CD
+4. Optional: Jenkins for CI/CD
 
 ## Kubernetes
 
@@ -39,10 +31,21 @@ Optional: Jenkins for CI/CD
 3. ELK
 4. Prometheus with Grafana
 
-## Steps:
+#### Steps:
 
-Deploy Prometheus and Grafana onto the cluster using the community Helm chart.
+1. Install Kubeflow follow instruction here
+
+2. Install MLflow with Helm
+
+3. Install ELK with Helm
+
+4. Deploy Prometheus and Grafana onto the cluster using the community Helm chart
+https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+
+
 
 ## Reference
 
 1. https://github.com/sachua/mlflow-docker-compose
+
+2. https://github.com/jeremyjordan/ml-monitoring
