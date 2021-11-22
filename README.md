@@ -40,7 +40,7 @@ You can use streamlit as the interface to check the api
 
 ## Environment for MLOps
 
-Please follow this repo to set up the environment on an instance or a kubernetes cluster
+Please follow here to set up the environment on an instance or a kubernetes cluster
 https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
 
