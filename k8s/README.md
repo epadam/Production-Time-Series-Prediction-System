@@ -22,6 +22,9 @@ For model serving, you can also use Tensroflow Serving or TorchServe
 
 Monitoring using ELK, Prometheus
 
+Test your mlflow deployment following the steps below.
+
+
 ## Kubernetes
 
 ### Data Engineering 
@@ -34,3 +37,7 @@ Monitoring using ELK, Prometheus
 2. MLflow
 3. ELK
 4. Prometheus with Grafana
+
+## Reference
+
+1. https://github.com/sachua/mlflow-docker-compose
