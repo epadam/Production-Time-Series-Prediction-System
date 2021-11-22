@@ -26,7 +26,9 @@ https://github.com/kubeflow/examples/tree/master/pipelines/github_action
 
 https://github.com/marketplace/actions/kubeflow-compile-deploy-and-run
 
-6. Deploy the model and monitor it (Seldon Core(outlier detection, explainer), Prometheus, on kubernetes)
+6. Deploy, monitor and logging the model(Seldon Core(outlier detection, explainer), Prometheus, ELK on kubernetes)
+
+A/B test, Canary Deployment, Shadow deployment
 
 you can also check the statistics of the model by deploying prometheus and grafana
 
