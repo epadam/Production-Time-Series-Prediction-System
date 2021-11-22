@@ -51,3 +51,7 @@ https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-promet
 2. https://github.com/jeremyjordan/ml-monitoring
 
 3. https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+
+On a single node
+https://towardsdatascience.com/a-simple-mlops-pipeline-on-your-local-machine-db9326addf31
+
