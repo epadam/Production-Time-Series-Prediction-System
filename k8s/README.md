@@ -24,6 +24,7 @@ Monitoring using ELK, Prometheus
 
 Test your mlflow deployment following the steps below.
 
+Optional: Jenkins for CI/CD
 
 ## Kubernetes
 
@@ -37,6 +38,10 @@ Test your mlflow deployment following the steps below.
 2. MLflow
 3. ELK
 4. Prometheus with Grafana
+
+## Steps:
+
+Deploy Prometheus and Grafana onto the cluster using the community Helm chart.
 
 ## Reference
 
