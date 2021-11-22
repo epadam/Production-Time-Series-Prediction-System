@@ -49,3 +49,5 @@ https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-promet
 1. https://github.com/sachua/mlflow-docker-compose
 
 2. https://github.com/jeremyjordan/ml-monitoring
+
+3. https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
