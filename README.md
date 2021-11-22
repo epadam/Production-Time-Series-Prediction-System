@@ -12,7 +12,10 @@ Here we use adults income dataset as example
 
 4. Model Development/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
 
-5. Once done model development, developing CI/CD/CT for the model (mlrun, tfx, kubeflow pipeline, github actions)
+(Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline, )
+
+5. Developing CI/CD/CT for the model (github actions, Jenkins)
+
 CI with github actions:
 
 a. set up env. secret in github secrets
@@ -38,7 +41,7 @@ You can use streamlit as the interface to check the api
 3. data drift alert
 
 
-## Environment for MLOps
+## Environment setup for MLOps
 
 Please follow here to set up the environment on an instance or a kubernetes cluster
 https://github.com/epadam/production-level-data-analysis/new/master/k8s
