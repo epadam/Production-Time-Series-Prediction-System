@@ -33,9 +33,9 @@ Test your mlflow deployment
 
 #### Steps:
 
-1. Install Kubeflow follow instruction here
+1. Install Kubeflow follow instruction [here](https://www.kubeflow.org/docs/started/installing-kubeflow/)
 
-2. Install MLflow with Helm
+2. Install MLflow with Helm (Mlflow Server, Database)
 
 3. Install ELK with Helm
 
