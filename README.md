@@ -10,7 +10,7 @@ Here we use adults income dataset as example
 
 3. EDA (You can use TFDV to validate the data)
 
-4. Model Development/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
+4. Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
 
 (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline, )
 
@@ -26,7 +26,7 @@ https://github.com/kubeflow/examples/tree/master/pipelines/github_action
 
 https://github.com/marketplace/actions/kubeflow-compile-deploy-and-run
 
-6. Deploy, monitor and logging the model(Seldon Core(outlier detection, explainer), Prometheus, ELK on kubernetes)
+6. Deploy, monitor and logging the model(Seldon Core(outlier detection, explainer, drift detector, Auditability), Prometheus, ELK on kubernetes)
 
 A/B test, Canary Deployment, Shadow deployment
 
