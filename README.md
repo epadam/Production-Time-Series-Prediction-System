@@ -13,7 +13,6 @@ Here we use adults income dataset as example
 4. Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
 
 (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline, )
-
     https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
 
 
