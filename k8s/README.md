@@ -39,7 +39,7 @@ Test your mlflow deployment
 https://aahansingh.com/mlflow-on-kubernetes
 https://github.com/wajeehulhassanvii/mlflow_on_kubeflow
 https://github.com/cetic/helm-mlflow
-
+https://towardsdatascience.com/mlflow-part-2-deploying-a-tracking-server-to-minikube-a2d6671e6455
 
 3. Install ELK with Helm
 
