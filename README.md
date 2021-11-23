@@ -51,6 +51,7 @@ Here we use adults income dataset as example
 ## Environment setup for MLOps
 
 Please follow here to set up the environment on an instance or a kubernetes cluster
+
 https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
 
