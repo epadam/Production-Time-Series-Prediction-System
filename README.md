@@ -14,6 +14,9 @@ Here we use adults income dataset as example
 
 (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline, )
 
+https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
+
+
 5. Developing CI/CD/CT for the model (github actions, Jenkins)
 
 CI with github actions:
@@ -29,6 +32,7 @@ https://github.com/kubeflow/examples/tree/master/pipelines/github_action
 https://github.com/marketplace/actions/kubeflow-compile-deploy-and-run
 
 6. Deploy, monitor and logging the model(Seldon Core(outlier detection, explainer, drift detector, Auditability), Prometheus, ELK on kubernetes)
+
 
 A/B test, Canary Deployment, Shadow deployment
 
