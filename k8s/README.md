@@ -36,10 +36,14 @@ Test your mlflow deployment
 1. Install Kubeflow follow instruction [here](https://www.kubeflow.org/docs/started/installing-kubeflow/)
 
 2. Install MLflow with Helm (Mlflow Server, Database)
-https://aahansingh.com/mlflow-on-kubernetes
-https://github.com/wajeehulhassanvii/mlflow_on_kubeflow
-https://github.com/cetic/helm-mlflow
-https://towardsdatascience.com/mlflow-part-2-deploying-a-tracking-server-to-minikube-a2d6671e6455
+
+    https://aahansingh.com/mlflow-on-kubernetes
+
+    https://github.com/wajeehulhassanvii/mlflow_on_kubeflow
+
+    https://github.com/cetic/helm-mlflow
+
+    https://towardsdatascience.com/mlflow-part-2-deploying-a-tracking-server-to-minikube-a2d6671e6455
 
 3. Install ELK with Helm
 
