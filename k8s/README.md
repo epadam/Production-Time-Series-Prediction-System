@@ -49,11 +49,11 @@ Test your mlflow deployment
 
 4. Deploy Prometheus and Grafana onto the cluster using the community Helm chart
 
-  https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+    https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
 
-If using Seldon for deployment, then you can use seldon-core-analytics which also use Prometheus and Grafana 
+    If using Seldon for deployment, then you can use seldon-core-analytics which also use Prometheus and Grafana 
 
-  https://github.com/SeldonIO/seldon-core/tree/master/helm-charts/seldon-core-analytics
+    https://github.com/SeldonIO/seldon-core/tree/master/helm-charts/seldon-core-analytics
 
 
 ## Reference
