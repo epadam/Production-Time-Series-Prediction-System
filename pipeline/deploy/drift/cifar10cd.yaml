@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: seldon-rclone-secret
+  namespace: cifar10drift
+type: Opaque
+stringData:
+  RCLONE_CONFIG_GS_TYPE: google cloud storage
+  RCLONE_CONFIG_GS_ANONYMOUS: "true"
+
+---
+
+
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: drift-detector
+  namespace: cifar10drift
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+    spec:
+      containers:
+      - image: seldonio/alibi-detect-server:1.8.0-dev
+        imagePullPolicy: IfNotPresent
+        args:
+        - --model_name
+        - cifar10cd
+        - --http_port
+        - '8080'
+        - --protocol
+        - tensorflow.http
+        - --storage_uri
+        - gs://seldon-models/alibi-detect/cd/ks/cifar10-0_6_2
+        - --reply_url
+        - http://hello-display.cifar10drift
+        - --event_type
+        - io.seldon.serving.inference.drift
+        - --event_source
+        - io.seldon.serving.cifar10cd
+        - DriftDetector
+        - --drift_batch_size
+        - '5000'
+        envFrom:
+        - secretRef:
+            name: seldon-rclone-secret
