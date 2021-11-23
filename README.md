@@ -18,6 +18,8 @@ Here we use adults income dataset as example
 
 CI with github actions:
 
+https://billtcheng2013.medium.com/hello-world-to-github-actions-for-mlops-with-google-cloud-f5917b80d8a9
+
 a. set up env. secret in github secrets
 
 https://github.com/NikeNano/kubeflow-github-action
