@@ -177,14 +177,9 @@ def nlp_pipeline(
         pvolumes={"/mnt": vectorize_step.pvolume},
     )
 
-    try:
-        seldon_config = yaml.load(
-            open("../deploy/model-a-b.yaml")
-        )
-    except:
-        # If this file is run from the project core directory
-        seldon_config = yaml.load(
-            open("../deploy/model-a-b.yaml")
+   
+    seldon_config = yaml.load(
+            open("../deploy/merge.yaml")
         )
 
     deploy_step = dsl.ResourceOp(
@@ -192,5 +187,7 @@ def nlp_pipeline(
         k8s_resource=seldon_config,
         attribute_outputs={"name": "{.metadata.name}"},
     )
+    
+
 
     deploy_step.after(predict_step)
