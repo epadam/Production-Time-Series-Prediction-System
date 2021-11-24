@@ -41,10 +41,12 @@ Here we use adults income dataset as example
     1. A Docker container image containing our pipeline and dependencies. The image is pushed to the Google Container Registry.
     2. And the CLI to create the pipeline.
 
-6. Deploy, monitor and logging the model(Seldon Core(outlier detection, explainer, drift detector, adversirial, Auditability), Prometheus, ELK on kubernetes)
-
+6. Deploy, monitor and logging the model
+    
+    Seldon Core(outlier detection, explainer, drift detector, adversirial, Auditability), where do you store the explain results?
+    
     Seldon suports A/B test, Canary Deployment, Shadow deployment
-
+    
     Metrics like performance, explainer is going to Prometheus and can be visualized with Grafana
     
     Logging is sending to ELK for further analysis
