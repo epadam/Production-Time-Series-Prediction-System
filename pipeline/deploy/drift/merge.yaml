@@ -1,0 +1,148 @@
+apiVersion: eventing.knative.dev/v1
+kind: broker
+metadata:
+ name: default
+ namespace: cifar10drift
+
+---
+
+apiVersion: machinelearning.seldon.io/v1
+kind: SeldonDeployment
+metadata:
+  name: tfserving-cifar10
+  namespace: cifar10drift
+spec:
+  protocol: tensorflow
+  transport: rest
+  predictors:
+  - componentSpecs:
+    - spec:
+        containers:
+        - args:
+          - --port=8500
+          - --rest_api_port=8501
+          - --model_name=resnet32
+          - --model_base_path=gs://seldon-models/tfserving/cifar10/resnet32
+          image: tensorflow/serving
+          name: resnet32
+          ports:
+          - containerPort: 8501
+            name: http
+            protocol: TCP
+    graph:
+      name: resnet32
+      type: MODEL
+      endpoint:
+        service_port: 8501
+      logger:
+        mode: all
+        url: http://broker-ingress.knative-eventing.svc.cluster.local/cifar10drift/default
+    name: model
+    replicas: 1
+    
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: seldon-rclone-secret
+  namespace: cifar10drift
+type: Opaque
+stringData:
+  RCLONE_CONFIG_GS_TYPE: google cloud storage
+  RCLONE_CONFIG_GS_ANONYMOUS: "true"
+
+---
+
+
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: drift-detector
+  namespace: cifar10drift
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+    spec:
+      containers:
+      - image: seldonio/alibi-detect-server:1.8.0-dev
+        imagePullPolicy: IfNotPresent
+        args:
+        - --model_name
+        - cifar10cd
+        - --http_port
+        - '8080'
+        - --protocol
+        - tensorflow.http
+        - --storage_uri
+        - gs://seldon-models/alibi-detect/cd/ks/cifar10-0_6_2
+        - --reply_url
+        - http://hello-display.cifar10drift
+        - --event_type
+        - io.seldon.serving.inference.drift
+        - --event_source
+        - io.seldon.serving.cifar10cd
+        - DriftDetector
+        - --drift_batch_size
+        - '5000'
+        envFrom:
+        - secretRef:
+            name: seldon-rclone-secret
+            
+ 
+---
+ 
+ apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-display
+  namespace: cifar10drift
+spec:
+  replicas: 1
+  selector:
+    matchLabels: &labels
+      app: hello-display
+  template:
+    metadata:
+      labels: *labels
+    spec:
+      containers:
+        - name: event-display
+          image: gcr.io/knative-releases/knative.dev/eventing-contrib/cmd/event_display
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: hello-display
+  namespace: cifar10drift
+spec:
+  selector:
+    app: hello-display
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+    
+ 
+--- 
+ 
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: drift-trigger
+  namespace: cifar10drift
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: io.seldon.serving.inference.request
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: drift-detector
+      namespace: cifar10drift
