@@ -8,15 +8,21 @@
 
 ### Machine Learning
 
-1. You can use MLflow to track, store and serve your model on your instance, this includes a Mlflow Server, MinIO Server, Artifact Store using minIO on s3, gcs (as model registry), Backstore using local file or database (for meta data)
+For Development:
 
-Test your mlflow deployment
+    1. Using MLflow to track, store and serve your model on your instance, this includes a Mlflow Server, MinIO Server, Artifact Store using minIO on s3, gcs (as model registry), Backstore using local file or database (for meta data)
 
-2. For model serving, you can also use Tensroflow Serving or TorchServe
+    Test your mlflow deployment
+    
+    2. (Optional): Jenkins for CI/CD, or github actions/gitlab CI/CD
 
-3. Monitoring using ELK, Prometheus
+For Production:
 
-4. Optional: Jenkins for CI/CD
+    1. Monitoring logging using ELK
+
+    2. Monitoring Metrics with Prometheus
+
+
 
 ## Kubernetes
 
@@ -26,7 +32,7 @@ Test your mlflow deployment
 
 ### Machine Learning
 
-1. Kubeflow (Includes Seldon, minIO, Istio, Spark)
+1. Kubeflow (it includes Seldon, minIO, Istio, Spark, Jupyter Notebook)
 2. MLflow
 3. ELK
 4. Prometheus with Grafana
