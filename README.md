@@ -1,8 +1,14 @@
 # Production-Level-Data-Analysis
 
-Here we use adults income dataset as example
+## Environment setup for MLOps
 
-## Model Developing Process
+Please follow here to set up the environment on an instance or a kubernetes cluster
+
+https://github.com/epadam/production-level-data-analysis/new/master/k8s
+
+## Model Developing and Deploying Process
+
+Here we use adults income dataset as example
 
 1. Data Collection (You will denmamize customers personal information from database) Dockerize your code
 
@@ -30,29 +36,43 @@ Here we use adults income dataset as example
     https://github.com/kubeflow/examples/tree/master/pipelines/github_action
 
     https://github.com/marketplace/actions/kubeflow-compile-deploy-and-run
+    
+    CD:
+    1. A Docker container image containing our pipeline and dependencies. The image is pushed to the Google Container Registry.
+    2. And the CLI to create the pipeline.
 
-6. Deploy, monitor and logging the model(Seldon Core(outlier detection, explainer, drift detector, Auditability), Prometheus, ELK on kubernetes)
+6. Deploy, monitor and logging the model(Seldon Core(outlier detection, explainer, drift detector, adversirial, Auditability), Prometheus, ELK on kubernetes)
 
-    A/B test, Canary Deployment, Shadow deployment
+    Seldon suports A/B test, Canary Deployment, Shadow deployment
 
-    You can also check the statistics of the model by deploying prometheus and grafana
+    Metrics like performance, explainer is going to Prometheus and can be visualized with Grafana
+    
+    Logging is sending to ELK for further analysis
+   
 
-7. Retrain the model when new data is available or concept drift happened (Kubeflow Pipeline, here we use the other half data)
+## Retraining Process
 
-8. When updating the code of retraining pipeline or detecting concept drift, trigger github actions to test the retraining pipeline, followed by CD to the test environment and finally deploy it in production 
+Following two condition will trigger the retraining process:
 
-    You can use streamlit as the interface to check the api
+a. Retrain the model when new data is available or concept drift happened (Kubeflow Pipeline, here we use the other half data)
 
-    1. prediction result
-    2. explain the result
-    3. data drift alert
+b. When updating the code of retraining pipeline or detecting concept drift, trigger github actions to test the retraining pipeline, followed by CD to the test environment and finally deploy it in production 
 
 
-## Environment setup for MLOps
+## Visualization
+    You can also try streamlit to check the avaible seldon api 
 
-Please follow here to set up the environment on an instance or a kubernetes cluster
 
-https://github.com/epadam/production-level-data-analysis/new/master/k8s
+
+## Reference
+
+1. https://blog.doit-intl.com/how-to-deploy-tensorflow-extended-pipeline-to-kubeflow-1fecf4602a39
+
+2. https://towardsdatascience.com/production-machine-learning-monitoring-outliers-drift-explainers-statistical-performance-d9b1d02ac158
+
+
+
+
 
 
 
