@@ -2,7 +2,7 @@
 
 In this setup, the pipeline and its components are built, tested, and packaged when new code is committed or pushed to the source code repository. Besides building packages, container images, and executables, the CI process can include the following tests:
 
-- Unit testing your feature engineering logic.
+- Unit testing your feature engineering logic. (tfx does this?)
 
 - Unit testing the different methods implemented in your model. For example, you have a function that accepts a categorical data column and you encode the function as a one-hot feature.
 
@@ -16,6 +16,7 @@ In this setup, the pipeline and its components are built, tested, and packaged w
 
 
 ## Continuous delivery
+
 In this level, your system continuously delivers new pipeline implementations to the target environment that in turn delivers prediction services of the newly trained model. For rapid and reliable continuous delivery of pipelines and models, you should consider the following:
 
 - Verifying the compatibility of the model with the target infrastructure before you deploy your model. For example, you need to verify that the packages that are required by the model are installed in the serving environment, and that the memory, compute, and accelerator resources that are available.
