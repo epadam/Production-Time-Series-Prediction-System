@@ -1,4 +1,4 @@
-## CI:
+## Continuous integration:
 
 In this setup, the pipeline and its components are built, tested, and packaged when new code is committed or pushed to the source code repository. Besides building packages, container images, and executables, the CI process can include the following tests:
 
