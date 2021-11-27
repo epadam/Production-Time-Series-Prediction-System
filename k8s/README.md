@@ -33,15 +33,17 @@ For Production:
 ### Machine Learning
 
 1. Kubeflow (it includes Seldon, minIO, Istio, Spark, Jupyter Notebook)
-2. MLflow
-3. ELK
-4. Prometheus with Grafana
+    Please check here to see how to deploy Kubeflow
+2. MLflow 
+
+5. ELK
+6. Prometheus with Grafana
 
 #### Steps:
 
 1. Install Kubeflow follow instruction [here](https://www.kubeflow.org/docs/started/installing-kubeflow/)
 
-2. Install MLflow with Helm (Mlflow Server, Database)
+2. Install MLflow with Helm (Mlflow Server, Backend Store(Database), Artifact Store(GCS)))
 
     https://aahansingh.com/mlflow-on-kubernetes
 
@@ -51,9 +53,8 @@ For Production:
 
     https://towardsdatascience.com/mlflow-part-2-deploying-a-tracking-server-to-minikube-a2d6671e6455
 
-3. Install ELK with Helm
 
-4. Deploy Prometheus and Grafana onto the cluster using the community Helm chart
+3. Deploy Prometheus and Grafana onto the cluster using the community Helm chart
 
     https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
 
@@ -61,6 +62,7 @@ For Production:
 
     https://github.com/SeldonIO/seldon-core/tree/master/helm-charts/seldon-core-analytics
 
+4. Install ELK with Helm (as infrastructure or go with the model deployment?)
 
 ## Reference
 
