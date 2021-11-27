@@ -6,13 +6,26 @@ Please follow here to set up the environment on an instance or a kubernetes clus
 
 https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
-## Model Developing and Deploying Process
+## Machine Learning Project in Production
 
-Here we use adults income dataset as example
+### Data Engineering
 
-1. Data Collection (You will denmamize customers personal information from database) Dockerize your code
+1. Data Collection (from IoT, web or other sources, streaming data or bulk)
+    Kafka or API fetch
 
-2. ETL, Data Labeling (transform the format you need and store in feature store)
+2. ETL, Data Labeling (denmamize customers personal information from database, transform the format you need and store in feature store)
+    
+    Apache Beam, Spark, Flink
+    
+3. Orchestrate the pipeline (Airflow)
+
+4. Develop CI/CD for your Data Processing pipeline
+
+5. Deploy the pipeline into production env
+
+### Model Developing and Deploying Process
+
+Here we use bike sharing dataset as example
 
 3. EDA, Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
 
