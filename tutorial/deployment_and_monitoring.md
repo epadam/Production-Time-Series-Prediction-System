@@ -18,6 +18,7 @@
     d. Drift monitoring (expose )
 
 5. Install Seldon Core Analytics and ELK to monitor the model performance:
+    
     Metrics:
     - Requests per second
     - Latency per request
