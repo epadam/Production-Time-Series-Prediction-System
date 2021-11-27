@@ -14,7 +14,7 @@ Here we use adults income dataset as example
 
 2. ETL (transform the format you need and store in feature store)
 
-3. EDA (You can use TFDV to validate the data)
+3. EDA, Data Labeling
 
 4. Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
 
