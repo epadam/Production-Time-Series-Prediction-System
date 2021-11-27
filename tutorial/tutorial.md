@@ -10,7 +10,14 @@
 
 0. Create a new notebook, install required tools for data versioning, model tracking, model versioning, model inspection, pipeline orchestration
 
+    pip install -r requirements.txt (mlflow, dvc, kfp, tfx)
+    Define parameters (data root, storage, mlflow init, dvc init)
+
 1. Load the data from data storage, do EDA, model training, evaluation
+    
+    tools you can use for evaluation and inspection
+    a. microsoft reliable AI 
+
 
 2. Build tfx pipeline components and compile the pipeline
 
