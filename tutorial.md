@@ -6,9 +6,9 @@
 
 ### Model development
 
-0. Install required tools()
+0. Create a new notebook, install required tools for data versioning, model tracking, model versioning, model inspection, pipeline orchestration
 
-1. Create a new notebook, load the data from data storage, do EDA, model training, evaluation
+1. Load the data from data storage, do EDA, model training, evaluation
 
 2. Build tfx pipeline components and compile the pipeline
 
@@ -16,7 +16,7 @@
 
 4. Write the deployment yaml including monitoring (seldon core analytics should already there, but drift, outlier, adversirial detection)
 
-5. Write CI/CD script with github actions, cloudbuild.yaml, 
+5. Write CI/CD script with github actions, cloudbuild.yaml
 
     For retraining pipeline:
     CI trigger --> CI script 
