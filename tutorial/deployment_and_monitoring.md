@@ -6,8 +6,8 @@
 
 3. Build the docker and push it to the registry
 
-4. Write the yaml file of the model and logging, outlier, drift detection, explainer for kubernetes
-    Kubeflow has deployment ops for the deployment
+4. Write the yaml file of the model (A/B testing, Canary deployment) and logging, outlier, drift detection, explainer for kubernetes,
+    Kubeflow has deployment ops for model deployment
 
 5. Model can be deployed manually or by CT pipeline or CD script.
 
