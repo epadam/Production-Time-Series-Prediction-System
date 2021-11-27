@@ -14,7 +14,9 @@ For Development:
 
     Test your mlflow deployment
     
-    2. (Optional): Jenkins for CI/CD, or github actions/gitlab CI/CD
+    2. Deploy Feature Store
+    
+    3. (Optional): Jenkins for CI/CD, or github actions/gitlab CI/CD
 
 For Production:
 
@@ -35,9 +37,9 @@ For Production:
 1. Kubeflow (it includes Seldon, minIO, Istio, Spark, Jupyter Notebook)
     Please check here to see how to deploy Kubeflow
 2. MLflow 
-
-5. ELK
-6. Prometheus with Grafana
+3. Feature Store
+3. ELK
+4. Prometheus with Grafana
 
 #### Steps:
 
