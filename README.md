@@ -12,18 +12,16 @@ Here we use adults income dataset as example
 
 1. Data Collection (You will denmamize customers personal information from database) Dockerize your code
 
-2. ETL (transform the format you need and store in feature store)
+2. ETL, Data Labeling (transform the format you need and store in feature store)
 
-3. EDA, Data Labeling
+3. EDA, Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
 
-4. Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
-
-5. (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline, )
+4. (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline, )
     
     https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
 
 
-6. Developing CI/CD/CT for the model (github actions, Jenkins)
+5. Developing CI/CD/CT for the model (github actions, Jenkins)
 
     CI with github actions:
 
@@ -41,7 +39,7 @@ Here we use adults income dataset as example
     1. A Docker container image containing our pipeline and dependencies. The image is pushed to the Google Container Registry.
     2. And the CLI to create the pipeline.
 
-7. Deploy, monitor and logging the model
+6. Deploy, monitor and logging the model
     
     Seldon Core(outlier detection, explainer, drift detector, adversirial, Auditability), where do you store the explain results?
     
