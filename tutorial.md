@@ -1,7 +1,9 @@
 
 ### Data Engineering
 
-1. 
+1. Data collecting
+2. ETL, data labeling
+
 
 
 ### Model development
