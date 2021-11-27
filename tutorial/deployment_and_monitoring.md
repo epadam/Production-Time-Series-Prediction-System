@@ -8,10 +8,19 @@
 
 4. Write the yaml file of the model (A/B testing, Canary deployment) and logging, outlier, drift detection, explainer for kubernetes,
     Kubeflow has deployment ops for model deployment
+    
+    a. Alibi Explainers
+    
+    b. 
 
 5. Model can be deployed manually or by CT pipeline or CD script.
 
-6. Install Seldon Core Analytics and ELK to monitor the model performance
+6. Install Seldon Core Analytics and ELK to monitor the model performance:
+    
+    - Requests per second
+    - Latency per request
+    - CPU/memory/data utilisation
+    - Custom application metrics
 
 
 
