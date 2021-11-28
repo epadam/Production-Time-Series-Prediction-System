@@ -11,6 +11,7 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
 ### Data Engineering
 
 1. Data Collection (from IoT, web or other sources, streaming data or bulk)
+    
     Kafka or API fetch
 
 2. ETL, Data Labeling (denmamize customers personal information from database, transform the format you need and store in feature store)
@@ -30,12 +31,14 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
 Here we use bike sharing dataset as example
 
 3. EDA, Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
+    Use mlflow, tensorboard, dvc to track your data and model
 
-4. (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline, )
+4. (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline)
     
     https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
-
-
+    
+    The meta data of the tfx pipeline is recorded with ML Metadata and store in SQL
+    
 5. Developing CI/CD/CT for the model (github actions, Jenkins)
 
     CI with github actions:
@@ -75,7 +78,7 @@ b. When updating the code of retraining pipeline or detecting concept drift, tri
 
 
 ## Visualization
-    You can also try streamlit to check the avaible seldon api 
+    You can also try streamlit to check what seldon core offers
 
 
 
