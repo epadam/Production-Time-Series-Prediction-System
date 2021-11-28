@@ -12,21 +12,22 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
 Please see the instruction in the folder:
 
-
 ### Model Developing and Deploying Process
 
 Here we use bike sharing dataset as example
 
-3. EDA, Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
+1. Set up the parameters and load dataset from database, feature store or, file storage
+
+2. EDA, Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
     Use mlflow, tensorboard, dvc to track your data and model
 
-4. (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline)
+3. (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline)
     
     https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
     
     The meta data of the tfx pipeline is recorded with ML Metadata and store in SQL
     
-5. Developing CI/CD/CT for the model (github actions, Jenkins)
+4. Developing CI/CD/CT for the model (github actions, Jenkins)
 
     CI with github actions:
 
@@ -44,7 +45,7 @@ Here we use bike sharing dataset as example
     1. A Docker container image containing our pipeline and dependencies. The image is pushed to the Google Container Registry.
     2. And the CLI to create the pipeline.
 
-6. Deploy, monitor and logging the model
+5. Deploy, monitor and logging the model
     
     Seldon Core(outlier detection, explainer, drift detector, adversirial, Auditability), where do you store the explain results?
     
