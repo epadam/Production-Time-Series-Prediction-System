@@ -84,6 +84,10 @@ b. When updating the code of retraining pipeline or detecting concept drift, tri
 
 ## Reference
 
+### mlflow with dvc
+
+https://www.iteblog.com/ppt/dataai-summit-euepadarope-2020/data-versioning-and-reproducible-ml-with-dvc-and-mlflow-iteblog.com.pdf
+
 ### CI/CD
 
 1. https://github.com/ksalama/kubeflow-examples/tree/master/kfp-cloudbuild
