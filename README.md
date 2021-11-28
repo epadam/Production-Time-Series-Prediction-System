@@ -10,21 +10,8 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
 ### Data Engineering
 
-1. Data Collection (from IoT, web or other sources, streaming data or bulk)
-    
-    Kafka or API fetch
+Please see the instruction in the folder:
 
-2. ETL, Data Labeling (denmamize customers personal information from database, transform the format you need and store in feature store)
-    
-    Apache Beam, Spark, Flink
-    1. Staging and Validation
-    2. Atomic
-    
-3. Orchestrate the pipeline (Airflow)
-
-4. Develop CI/CD for your Data Processing pipeline
-
-5. Deploy the pipeline into production env with monitoring
 
 ### Model Developing and Deploying Process
 
