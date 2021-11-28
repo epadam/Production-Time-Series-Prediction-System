@@ -1,5 +1,7 @@
 ## Data Engineering
 
+0. Install Infrastructure on Kubernetes (Kafka, Zookeeper, LabelStudio, Create a GCP project)
+
 1. Data Collection (from IoT, web or other sources, streaming data or bulk)
     API fetching example
     Kafka Streaming example
