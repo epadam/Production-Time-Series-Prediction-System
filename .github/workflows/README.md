@@ -1,6 +1,6 @@
 ## Manual Script
 
-build.sh
+build.sh (can become github actions yaml)
 
 
 
