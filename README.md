@@ -79,6 +79,12 @@ b. When updating the code of retraining pipeline or detecting concept drift, tri
 
 ## Reference
 
+### CI/CD
+
+1. https://github.com/ksalama/kubeflow-examples/tree/master/kfp-cloudbuild
+
+### TFX
+
 1. https://blog.doit-intl.com/how-to-deploy-tensorflow-extended-pipeline-to-kubeflow-1fecf4602a39
 
 2. https://towardsdatascience.com/production-machine-learning-monitoring-outliers-drift-explainers-statistical-performance-d9b1d02ac158
