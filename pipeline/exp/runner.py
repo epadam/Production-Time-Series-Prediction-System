@@ -9,6 +9,9 @@ from tfx.orchestration import data_types
 from tfx.orchestration.kubeflow.v2 import kubeflow_v2_dag_runner
 from tfx.proto import trainer_pb2
 from tfx.utils import telemetry_utils
+from ml_metadata.proto import metadata_store_pb2
+from ml_metadata import metadata_store
+
 
 import config
 from pipeline import create_pipeline
@@ -37,6 +40,16 @@ _SERVING_MODEL_DIR = os.path.join(_PIPELINE_ROOT, 'serving_model')
 _DATA_PATH = 'gs://{}/tfx-template/data/taxi/'.format(configs.GCS_BUCKET_NAME)
 # how to version the training data
 
+connection_config = metadata_store_pb2.ConnectionConfig()
+
+'''
+connection_config.mysql.host = '...'
+connection_config.mysql.port = '...'
+connection_config.mysql.database = '...'
+connection_config.mysql.user = '...'
+connection_config.mysql.password = '...'
+store = metadata_store.MetadataStore(connection_config)
+'''
 
 
 def run():
@@ -54,6 +67,7 @@ def run():
       eval_args=trainer_pb2.EvalArgs(num_steps=configs.EVAL_NUM_STEPS),
       eval_accuracy_threshold=configs.EVAL_ACCURACY_THRESHOLD,
       serving_model_dir=_SERVING_MODEL_DIR,
+      
   )
   runner = kubeflow_v2_dag_runner.KubeflowV2DagRunner(config=runner_config)
   runner.run(pipeline=dsl_pipeline)
