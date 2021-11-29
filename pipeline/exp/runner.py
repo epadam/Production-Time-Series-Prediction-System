@@ -6,7 +6,8 @@ from typing import Optional, Dict, List, Text
 import kfp
 from kfp import gcp
 from tfx.orchestration import data_types
-from tfx.orchestration.kubeflow import kubeflow_dag_runner
+from tfx.orchestration.kubeflow.v2 import kubeflow_v2_dag_runner
+from tfx.proto import trainer_pb2
 from tfx.utils import telemetry_utils
 
 import config
@@ -25,13 +26,45 @@ _OUTPUT_DIR = os.path.join('gs://', configs.GCS_BUCKET_NAME)
 # - Metadata will be written to metadata service backend.
 _PIPELINE_ROOT = os.path.join(_OUTPUT_DIR, 'tfx_pipeline_output',
                               configs.PIPELINE_NAME)
+pipeline_root = f'{config.ARTIFACT_STORE_URI}/{config.PIPELINE_NAME}/{kfp.dsl.RUN_ID_PLACEHOLDER}'
+
+
 
 # The last component of the pipeline, "Pusher" will produce serving model under
 # SERVING_MODEL_DIR.
 _SERVING_MODEL_DIR = os.path.join(_PIPELINE_ROOT, 'serving_model')
 
 _DATA_PATH = 'gs://{}/tfx-template/data/taxi/'.format(configs.GCS_BUCKET_NAME)
-# Check if data is recorded
+# how to version the training data
+
+
+
+def run():
+  metadata_config = kubeflow_dag_runner.get_default_kubeflow_metadata_config()
+  runner_config = kubeflow_v2_dag_runner.KubeflowV2DagRunnerConfig(
+      default_image=configs.PIPELINE_IMAGE, kubeflow_metadata_config=metadata_config)
+  
+  dsl_pipeline = pipeline.create_pipeline(
+      pipeline_name=configs.PIPELINE_NAME,
+      pipeline_root=_PIPELINE_ROOT,
+      data_path=_DATA_PATH,
+      preprocessing_fn=configs.PREPROCESSING_FN,
+      run_fn=configs.RUN_FN,
+      train_args=trainer_pb2.TrainArgs(num_steps=configs.TRAIN_NUM_STEPS),
+      eval_args=trainer_pb2.EvalArgs(num_steps=configs.EVAL_NUM_STEPS),
+      eval_accuracy_threshold=configs.EVAL_ACCURACY_THRESHOLD,
+      serving_model_dir=_SERVING_MODEL_DIR,
+  )
+  runner = kubeflow_v2_dag_runner.KubeflowV2DagRunner(config=runner_config)
+  runner.run(pipeline=dsl_pipeline)
+  
+
+  
+  
+  
+  
+  
+'''  
 
 def run():
   """Define a pipeline to be executed using Kubeflow V2 runner."""
@@ -39,7 +72,7 @@ def run():
   runner_config = kubeflow_v2_dag_runner.KubeflowV2DagRunnerConfig(
       default_image=configs.PIPELINE_IMAGE)
 
-  dsl_pipeline = pipeline.create_pipeline(
+  dsl_pipeline = create_pipeline(
       pipeline_name=configs.PIPELINE_NAME,
       pipeline_root=_PIPELINE_ROOT,
       data_path=_DATA_PATH,
@@ -65,27 +98,7 @@ def run():
 
   runner.run(pipeline=dsl_pipeline)
 
-
-
-def run():
-    metadata_config = kubeflow_dag_runner.get_default_kubeflow_metadata_config()
-    tfx_image = "gcr.io/sascha-playground-doit/sentiment-pipeline"
-    runner_config = kubeflow_dag_runner.KubeflowDagRunnerConfig(
-        kubeflow_metadata_config=metadata_config, tfx_image=tfx_image)
-
-    kubeflow_dag_runner.KubeflowDagRunner(config=runner_config).run(
-                                              create_pipeline(
-                                                  pipeline_name=PIPELINE_NAME,
-                                                  pipeline_root=PIPELINE_ROOT))
-
-
-
-    
-    
-pipeline_root = f'{config.ARTIFACT_STORE_URI}/{config.PIPELINE_NAME}/{kfp.dsl.RUN_ID_PLACEHOLDER}'
-
-# Set KubeflowDagRunner settings
-metadata_config = kubeflow_dag_runner.get_default_kubeflow_metadata_config()
+  
 
 runner_config = kubeflow_dag_runner.KubeflowDagRunnerConfig(
     kubeflow_metadata_config = metadata_config,
@@ -111,7 +124,7 @@ runner_config = kubeflow_dag_runner.KubeflowDagRunnerConfig(
       beam_pipeline_args=beam_pipeline_args,
       model_regisrty_uri=config.MODEL_REGISTRY_URI)
   )
-    
+'''    
     
     
 if __name__ == '__main__':
