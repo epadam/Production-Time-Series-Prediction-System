@@ -25,7 +25,7 @@ Here we use bike sharing dataset as example
     
     https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
     
-    The meta data of the tfx pipeline is recorded with ML Metadata and store in SQL
+    The meta data of the tfx pipeline is recorded with ML Metadata. After running the pipeline use the notebook to investigate the metadata
     
 4. Developing CI/CD/CT for the model (github actions, Jenkins)
 
