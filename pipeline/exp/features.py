@@ -4,8 +4,6 @@ from typing import Text, List
 # At least one feature is needed.
 
 
-  , 
-
 # Name of features which have continuous float values. These features will be
 # used as their own values.
 DENSE_FLOAT_FEATURE_KEYS = ['weathersit', 'temp', 'atemp', 'hum', 'windspeed']
