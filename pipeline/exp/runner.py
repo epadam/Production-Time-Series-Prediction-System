@@ -1,29 +1,70 @@
 """KFP runner"""
 
+import os
+from absl import logging
+from typing import Optional, Dict, List, Text
 import kfp
 from kfp import gcp
 from tfx.orchestration import data_types
 from tfx.orchestration.kubeflow import kubeflow_dag_runner
-
-from typing import Optional, Dict, List, Text
-
-import config
-import pipeline
-
-
-import os
-from absl import logging
-
-
-from pipeline import create_pipeline
-from tfx.orchestration.kubeflow import kubeflow_dag_runner
 from tfx.utils import telemetry_utils
 
-PIPELINE_NAME = 'sentiment3'
-GOOGLE_CLOUD_PROJECT = 'sascha-playground-doit'
-GCS_BUCKET_NAME = GOOGLE_CLOUD_PROJECT + '-kubeflowpipelines-default'
-OUTPUT_DIR = os.path.join('gs://', GCS_BUCKET_NAME)
-PIPELINE_ROOT = os.path.join(OUTPUT_DIR, PIPELINE_NAME)
+import config
+from pipeline import create_pipeline
+
+
+# TFX pipeline produces many output files and metadata. All output data will be
+# stored under this OUTPUT_DIR.
+# NOTE: It is recommended to have a separated OUTPUT_DIR which is *outside* of
+#       the source code structure. Please change OUTPUT_DIR to other location
+#       where we can store outputs of the pipeline.
+_OUTPUT_DIR = os.path.join('gs://', configs.GCS_BUCKET_NAME)
+
+# TFX produces two types of outputs, files and metadata.
+# - Files will be created under PIPELINE_ROOT directory.
+# - Metadata will be written to metadata service backend.
+_PIPELINE_ROOT = os.path.join(_OUTPUT_DIR, 'tfx_pipeline_output',
+                              configs.PIPELINE_NAME)
+
+# The last component of the pipeline, "Pusher" will produce serving model under
+# SERVING_MODEL_DIR.
+_SERVING_MODEL_DIR = os.path.join(_PIPELINE_ROOT, 'serving_model')
+
+_DATA_PATH = 'gs://{}/tfx-template/data/taxi/'.format(configs.GCS_BUCKET_NAME)
+# Check if data is recorded
+
+def run():
+  """Define a pipeline to be executed using Kubeflow V2 runner."""
+
+  runner_config = kubeflow_v2_dag_runner.KubeflowV2DagRunnerConfig(
+      default_image=configs.PIPELINE_IMAGE)
+
+  dsl_pipeline = pipeline.create_pipeline(
+      pipeline_name=configs.PIPELINE_NAME,
+      pipeline_root=_PIPELINE_ROOT,
+      data_path=_DATA_PATH,
+      # TODO(step 7): (Optional) Uncomment here to use BigQueryExampleGen.
+      # query=configs.BIG_QUERY_QUERY,
+      preprocessing_fn=configs.PREPROCESSING_FN,
+      run_fn=configs.RUN_FN,
+      train_args=trainer_pb2.TrainArgs(num_steps=configs.TRAIN_NUM_STEPS),
+      eval_args=trainer_pb2.EvalArgs(num_steps=configs.EVAL_NUM_STEPS),
+      eval_accuracy_threshold=configs.EVAL_ACCURACY_THRESHOLD,
+      serving_model_dir=_SERVING_MODEL_DIR,
+    
+      # Uncomment below to use Dataflow.
+      # beam_pipeline_args=configs.DATAFLOW_BEAM_PIPELINE_ARGS,
+    
+      ai_platform_training_args=configs.GCP_AI_PLATFORM_TRAINING_ARGS,
+    
+      # Uncomment below to use Cloud AI Platform.
+      # ai_platform_serving_args=configs.GCP_AI_PLATFORM_SERVING_ARGS,
+  )
+
+  runner = kubeflow_v2_dag_runner.KubeflowV2DagRunner(config=runner_config)
+
+  runner.run(pipeline=dsl_pipeline)
+
 
 
 def run():
@@ -38,17 +79,15 @@ def run():
                                                   pipeline_root=PIPELINE_ROOT))
 
 
-if __name__ == '__main__':
-    logging.set_verbosity(logging.INFO)
-    run()
+
     
     
 pipeline_root = f'{config.ARTIFACT_STORE_URI}/{config.PIPELINE_NAME}/{kfp.dsl.RUN_ID_PLACEHOLDER}'
 
-  # Set KubeflowDagRunner settings
-  metadata_config = kubeflow_dag_runner.get_default_kubeflow_metadata_config()
+# Set KubeflowDagRunner settings
+metadata_config = kubeflow_dag_runner.get_default_kubeflow_metadata_config()
 
-  runner_config = kubeflow_dag_runner.KubeflowDagRunnerConfig(
+runner_config = kubeflow_dag_runner.KubeflowDagRunnerConfig(
     kubeflow_metadata_config = metadata_config,
     pipeline_operator_funcs = kubeflow_dag_runner.get_default_pipeline_operator_funcs(
       config.USE_KFP_SA == 'True'),
@@ -72,3 +111,9 @@ pipeline_root = f'{config.ARTIFACT_STORE_URI}/{config.PIPELINE_NAME}/{kfp.dsl.RU
       beam_pipeline_args=beam_pipeline_args,
       model_regisrty_uri=config.MODEL_REGISTRY_URI)
   )
+    
+    
+    
+if __name__ == '__main__':
+    logging.set_verbosity(logging.INFO)
+    run()
