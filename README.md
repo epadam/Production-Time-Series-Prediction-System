@@ -6,15 +6,21 @@ Please follow here to set up the environment on an instance or a kubernetes clus
 
 https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
+
+
 ## Machine Learning Project in Production
+
+
 
 ### Data Engineering
 
 Please see the instruction in the folder:
 
+
+
 ### Model Developing and Deploying Process
 
-Here we use bike sharing dataset as example
+Here we use bike sharing dataset as example, we split the dataset to half and trigger the retraining when upload the other half to gcs. 
 
 1. Set up the parameters and load dataset from database, feature store or, file storage
 
