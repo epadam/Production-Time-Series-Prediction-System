@@ -41,8 +41,7 @@ def create_pipeline(
     eval_args: tfx.proto.EvalArgs,
     eval_accuracy_threshold: float,
     serving_model_dir: Text,
-    metadata_connection_config: Optional[
-        metadata_store_pb2.ConnectionConfig] = None,
+    metadata_connection_config: metadata_store_pb2.ConnectionConfig,
     beam_pipeline_args: Optional[List[Text]] = None,
     #trainer_module_file: str,
     #evaluator_module_file: str,
