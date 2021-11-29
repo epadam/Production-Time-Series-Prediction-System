@@ -27,6 +27,8 @@ Here we use bike sharing dataset as example
     
     The meta data of the tfx pipeline is recorded with ML Metadata. After running the pipeline use the notebook to investigate the metadata
     
+    Using PV and PVC as local storage between components
+    
 4. Developing CI/CD/CT for the model (github actions, Jenkins)
 
     CI with github actions:
