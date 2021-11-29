@@ -6,6 +6,7 @@ https://medium.com/@robertf99/mlops-with-tensorflow-extended-tfx-and-tensorflow-
 
 https://cloud.google.com/architecture/real-time-item-matching
 
+https://medium.com/swlh/understanding-ml-in-production-scaling-data-validation-with-tensorflow-extended-ee1640d1bed4
 
 
 
