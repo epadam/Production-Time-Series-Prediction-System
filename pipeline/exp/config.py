@@ -43,8 +43,8 @@ GOOGLE_CLOUD_REGION = 'us-central1'  # ex) 'us-central1'
 # This image will be automatically built by CLI if we use --build-image flag.
 PIPELINE_IMAGE = f'gcr.io/{GOOGLE_CLOUD_PROJECT}/{PIPELINE_NAME}'
 
-PREPROCESSING_FN = 'models.preprocessing.preprocessing_fn'
-RUN_FN = 'models.keras_model.model.run_fn'
+PREPROCESSING_FN = 'preprocessing.preprocessing_fn'
+RUN_FN = 'model.run_fn'
 # NOTE: Uncomment below to use an estimator based model.
 # RUN_FN = 'models.estimator_model.model.run_fn'
 
