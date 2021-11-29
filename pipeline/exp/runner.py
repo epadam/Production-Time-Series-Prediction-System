@@ -44,7 +44,7 @@ def run():
   runner_config = kubeflow_v2_dag_runner.KubeflowV2DagRunnerConfig(
       default_image=configs.PIPELINE_IMAGE, kubeflow_metadata_config=metadata_config)
   
-  dsl_pipeline = pipeline.create_pipeline(
+  dsl_pipeline = create_pipeline(
       pipeline_name=configs.PIPELINE_NAME,
       pipeline_root=_PIPELINE_ROOT,
       data_path=_DATA_PATH,
