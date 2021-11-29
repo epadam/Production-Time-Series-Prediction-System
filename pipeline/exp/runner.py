@@ -67,7 +67,7 @@ def run():
       eval_args=trainer_pb2.EvalArgs(num_steps=configs.EVAL_NUM_STEPS),
       eval_accuracy_threshold=configs.EVAL_ACCURACY_THRESHOLD,
       serving_model_dir=_SERVING_MODEL_DIR,
-      
+      connection_config
   )
   runner = kubeflow_v2_dag_runner.KubeflowV2DagRunner(config=runner_config)
   runner.run(pipeline=dsl_pipeline)
