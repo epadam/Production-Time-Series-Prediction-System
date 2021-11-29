@@ -2,42 +2,11 @@ from typing import List
 
 import absl
 import tensorflow as tf
-from tensorflow import keras
 import tensorflow_transform as tft
 
-from tfx.components.trainer.fn_args_utils import DataAccessor
-from tfx.components.trainer.fn_args_utils import FnArgs
 from tfx_bsl.tfxio import dataset_options
 
-
-_FEATURE_KEYS = ['season', 'yr', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit', 'temp', 'atemp', 'hum', 'windspeed']
-_LABEL_KEY = 'cnt'
-
-
-# There are 100 entries in the imdb_small dataset. ExampleGen splits the dataset
-# with a 2:1 train-eval ratio. Batch_size is an empirically sound
-# configuration.
-# To train on the entire imdb dataset, please refer to imdb_dataset_utils.py
-# and change the batch configuration accordingly.
-
-_DROPOUT_RATE = 0.2
-_EMBEDDING_UNITS = 64
-_EVAL_BATCH_SIZE = 5
-_HIDDEN_UNITS = 64
-_LEARNING_RATE = 1e-4
-_LSTM_UNITS = 64
-_VOCAB_SIZE = 8000
-_MAX_LEN = 400
-_TRAIN_BATCH_SIZE = 10
-
-
-def _transformed_name(key):
-  return key + '_xf'
-
-
-def _transformed_names(keys):
-  return [_transformed_name(key) for key in keys]
-
+import features
 
 # Tf.Transform considers these features as "raw"
 def _get_raw_feature_spec(schema):
@@ -63,6 +32,8 @@ def _fill_in_missing(x):
           tf.SparseTensor(x.indices, x.values, [x.dense_shape[0], 1]),
           default_value),
       axis=1)
+
+
 
 def preprocessing_fn(inputs):
   """tf.transform's callback function for preprocessing inputs.
@@ -92,6 +63,7 @@ def preprocessing_fn(inputs):
     outputs[_transformed_name(key)] = _fill_in_missing(inputs[key])
 
   # Was this passenger a big tipper?
+  '''
   taxi_fare = _fill_in_missing(inputs[_FARE_KEY])
   tips = _fill_in_missing(inputs[_LABEL_KEY])
   outputs[_transformed_name(_LABEL_KEY)] = tf.compat.v1.where(
@@ -100,6 +72,7 @@ def preprocessing_fn(inputs):
       # Test if the tip was > 20% of the fare.
       tf.cast(
           tf.greater(tips, tf.multiply(taxi_fare, tf.constant(0.2))), tf.int64))
+  '''
 
   return outputs
 
