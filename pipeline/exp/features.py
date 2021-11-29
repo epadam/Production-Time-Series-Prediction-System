@@ -3,23 +3,26 @@ from typing import Text, List
 
 # At least one feature is needed.
 
+
+  , 
+
 # Name of features which have continuous float values. These features will be
 # used as their own values.
-DENSE_FLOAT_FEATURE_KEYS = ['trip_miles']
+DENSE_FLOAT_FEATURE_KEYS = ['weathersit', 'temp', 'atemp', 'hum', 'windspeed']
 
 # Name of features which have continuous float values. These features will be
 # bucketized using `tft.bucketize`, and will be used as categorical features.
-BUCKET_FEATURE_KEYS = ['pickup_latitude']
+# BUCKET_FEATURE_KEYS = ['pickup_latitude']
 # Number of buckets used by tf.transform for encoding each feature. The length
 # of this list should be the same with BUCKET_FEATURE_KEYS.
-BUCKET_FEATURE_BUCKET_COUNT = [10]
+# BUCKET_FEATURE_BUCKET_COUNT = [10]
 
 # Name of features which have categorical values which are mapped to integers.
 # These features will be used as categorical features.
-CATEGORICAL_FEATURE_KEYS = ['trip_start_hour']
+CATEGORICAL_FEATURE_KEYS = [ 'season', 'yr', 'mnth', 'hr', 'holiday', 'weekday', 'workingday']
 # Number of buckets to use integer numbers as categorical features. The length
 # of this list should be the same with CATEGORICAL_FEATURE_KEYS.
-CATEGORICAL_FEATURE_MAX_VALUES = [24]
+CATEGORICAL_FEATURE_MAX_VALUES = [4, 4, 12, 24, 2, 5, 2]
 
 # Name of features which have string values and are mapped to integers.
 VOCAB_FEATURE_KEYS = []
@@ -53,7 +56,7 @@ VOCAB_SIZE = 1000
 OOV_SIZE = 10
 
 # Keys
-LABEL_KEY = 'tips'
+LABEL_KEY = 'cnt'
 FARE_KEY = 'fare'
 
 
