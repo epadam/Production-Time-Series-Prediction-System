@@ -1,1 +1,20 @@
-
+apiVersion: machinelearning.seldon.io/v1
+kind: SeldonDeployment
+metadata:
+  name: income
+  namespace: seldon
+spec:
+  name: income
+  annotations:
+    seldon.io/rest-timeout: "100000"
+  predictors:
+  - graph:
+      children: []
+      implementation: SKLEARN_SERVER
+      modelUri: gs://seldon-models/sklearn/income/model-0.23.2
+      name: classifier
+    explainer:
+      type: AnchorTabular
+      modelUri: gs://seldon-models/sklearn/income/explainer-py36-0.5.2
+    name: default
+    replicas: 1
