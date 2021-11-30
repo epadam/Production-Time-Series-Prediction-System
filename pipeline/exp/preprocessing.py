@@ -8,6 +8,17 @@ from tfx_bsl.tfxio import dataset_options
 
 import features
 
+_DENSE_FLOAT_FEATURE_KEYS = features.DENSE_FLOAT_FEATURE_KEYS
+_VOCAB_FEATURE_KEYS = features.VOCAB_FEATURE_KEYS
+_VOCAB_SIZE = features.VOCAB_SIZE
+_OOV_SIZE = features.OOV_SIZE
+_FEATURE_BUCKET_COUNT =features.FEATURE_BUCKET_COUNT
+_BUCKET_FEATURE_KEYS = features.BUCKET_FEATURE_KEYS
+_CATEGORICAL_FEATURE_KEYS = features.CATEGORICAL_FEATURE_KEYS
+_FARE_KEY = features.FARE_KEY
+_LABEL_KEY = features.LABEL_KEY
+
+
 # Tf.Transform considers these features as "raw"
 def _get_raw_feature_spec(schema):
   return schema_utils.schema_as_feature_spec(schema).feature_spec
@@ -45,22 +56,22 @@ def preprocessing_fn(inputs):
   outputs = {}
   for key in _DENSE_FLOAT_FEATURE_KEYS:
     # If sparse make it dense, setting nan's to 0 or '', and apply zscore.
-    outputs[_transformed_name(key)] = tft.scale_to_z_score(
+    outputs[key] = tft.scale_to_z_score(
         _fill_in_missing(inputs[key]))
 
   for key in _VOCAB_FEATURE_KEYS:
     # Build a vocabulary for this feature.
-    outputs[_transformed_name(key)] = tft.compute_and_apply_vocabulary(
+    outputs[key] = tft.compute_and_apply_vocabulary(
         _fill_in_missing(inputs[key]),
         top_k=_VOCAB_SIZE,
         num_oov_buckets=_OOV_SIZE)
 
   for key in _BUCKET_FEATURE_KEYS:
-    outputs[_transformed_name(key)] = tft.bucketize(
+    outputs[key] = tft.bucketize(
         _fill_in_missing(inputs[key]), _FEATURE_BUCKET_COUNT)
 
   for key in _CATEGORICAL_FEATURE_KEYS:
-    outputs[_transformed_name(key)] = _fill_in_missing(inputs[key])
+    outputs[key] = _fill_in_missing(inputs[key])
 
   # Was this passenger a big tipper?
   '''
