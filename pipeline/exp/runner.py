@@ -13,7 +13,7 @@ from ml_metadata.proto import metadata_store_pb2
 from ml_metadata import metadata_store
 
 
-import config
+import configs
 from pipeline import create_pipeline
 
 
@@ -24,6 +24,8 @@ from pipeline import create_pipeline
 #       where we can store outputs of the pipeline.
 _OUTPUT_DIR = os.path.join('gs://', configs.GCS_BUCKET_NAME)
 
+
+
 # TFX produces two types of outputs, files and metadata.
 # - Files will be created under PIPELINE_ROOT directory.
 # - Metadata will be written to metadata service backend.
@@ -31,11 +33,29 @@ _PIPELINE_ROOT = os.path.join(_OUTPUT_DIR, 'tfx_pipeline_output',
                               configs.PIPELINE_NAME)
 pipeline_root = f'{config.ARTIFACT_STORE_URI}/{config.PIPELINE_NAME}/{kfp.dsl.RUN_ID_PLACEHOLDER}'
 
+# Path to various pipeline artifact.
+PIPELINE_ROOT = 'gs://{}/pipeline_root/{}'.format(
+    GCS_BUCKET_NAME, PIPELINE_NAME)
 
+# Paths for users' Python module.
+MODULE_ROOT = 'gs://{}/pipeline_module/{}'.format(
+    GCS_BUCKET_NAME, PIPELINE_NAME)
+
+
+METADATA_PATH = os.path.join('metadata', configs.PIPELINE_NAME, 'metadata.db')
 
 # The last component of the pipeline, "Pusher" will produce serving model under
 # SERVING_MODEL_DIR.
 _SERVING_MODEL_DIR = os.path.join(_PIPELINE_ROOT, 'serving_model')
+
+# This is the path where your model will be pushed for serving.
+SERVING_MODEL_DIR = 'gs://{}/serving_model/{}'.format(
+    GCS_BUCKET_NAME, PIPELINE_NAME)
+
+
+
+# Paths for users' data.
+DATA_ROOT = 'gs://{}/data/{}'.format(GCS_BUCKET_NAME, PIPELINE_NAME)
 
 _DATA_PATH = 'gs://{}/tfx-template/data/taxi/'.format(configs.GCS_BUCKET_NAME)
 # how to version the training data
@@ -50,6 +70,8 @@ connection_config.mysql.user = '...'
 connection_config.mysql.password = '...'
 store = metadata_store.MetadataStore(connection_config)
 '''
+
+
 
 
 def run():
@@ -67,7 +89,8 @@ def run():
       eval_args=trainer_pb2.EvalArgs(num_steps=configs.EVAL_NUM_STEPS),
       eval_accuracy_threshold=configs.EVAL_ACCURACY_THRESHOLD,
       serving_model_dir=_SERVING_MODEL_DIR,
-      connection_config
+      metadata_connection_config=connection_config,
+      metadata_path=METADATA_PATH
   )
   runner = kubeflow_v2_dag_runner.KubeflowV2DagRunner(config=runner_config)
   runner.run(pipeline=dsl_pipeline)
