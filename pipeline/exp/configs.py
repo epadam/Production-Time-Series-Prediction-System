@@ -14,8 +14,9 @@ try:
 except ImportError:
   GOOGLE_CLOUD_PROJECT = ''
 
-PROJECT_ID=os.getenv('PROJECT_ID', 'tfx-cloudml')
 GOOGLE_CLOUD_PROJECT = 'sascha-playground-doit'
+  
+PROJECT_ID=os.getenv('PROJECT_ID', 'tfx-cloudml')
 REGION=os.getenv('REGION', 'europe-west1')
 
 GCS_BUCKET_NAME = GOOGLE_CLOUD_PROJECT + '-kubeflowpipelines-default'
@@ -30,7 +31,14 @@ ML_IMAGE_URI=os.getenv('ML_IMAGE_URI', 'tensorflow/tfx:0.23.0')
 BEAM_RUNNER=os.getenv('BEAM_RUNNER', 'DirectRunner')
 MODEL_REGISTRY_URI=os.getenv('MODEL_REGISTRY_URI', 'gs://tfx-cloudml-artifacts/model_registry')
 
+GOOGLE_CLOUD_PROJECT = ''         # <--- ENTER THIS
+GOOGLE_CLOUD_PROJECT_NUMBER = ''  # <--- ENTER THIS
+GOOGLE_CLOUD_REGION = ''          # <--- ENTER THIS
+GCS_BUCKET_NAME = ''              # <--- ENTER THIS
 
+if not (GOOGLE_CLOUD_PROJECT and  GOOGLE_CLOUD_PROJECT_NUMBER and GOOGLE_CLOUD_REGION and GCS_BUCKET_NAME):
+    from absl import logging
+    logging.error('Please set all required parameters.')
 
 
 
