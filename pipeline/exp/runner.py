@@ -3,15 +3,17 @@
 import os
 from absl import logging
 from typing import Optional, Dict, List, Text
+
 import kfp
 from kfp import gcp
+
 from tfx.orchestration import data_types
 from tfx.orchestration.kubeflow.v2 import kubeflow_v2_dag_runner
 from tfx.proto import trainer_pb2
 from tfx.utils import telemetry_utils
+
 from ml_metadata.proto import metadata_store_pb2
 from ml_metadata import metadata_store
-
 
 import configs
 from pipeline import create_pipeline
@@ -31,37 +33,40 @@ _OUTPUT_DIR = os.path.join('gs://', configs.GCS_BUCKET_NAME)
 # - Metadata will be written to metadata service backend.
 _PIPELINE_ROOT = os.path.join(_OUTPUT_DIR, 'tfx_pipeline_output',
                               configs.PIPELINE_NAME)
-pipeline_root = f'{config.ARTIFACT_STORE_URI}/{config.PIPELINE_NAME}/{kfp.dsl.RUN_ID_PLACEHOLDER}'
+
+#pipeline_root = f'{config.ARTIFACT_STORE_URI}/{config.PIPELINE_NAME}/{kfp.dsl.RUN_ID_PLACEHOLDER}'
 
 # Path to various pipeline artifact.
-PIPELINE_ROOT = 'gs://{}/pipeline_root/{}'.format(
-    GCS_BUCKET_NAME, PIPELINE_NAME)
+#PIPELINE_ROOT = 'gs://{}/pipeline_root/{}'.format(
+#    GCS_BUCKET_NAME, PIPELINE_NAME)
 
 # Paths for users' Python module.
-MODULE_ROOT = 'gs://{}/pipeline_module/{}'.format(
-    GCS_BUCKET_NAME, PIPELINE_NAME)
+#MODULE_ROOT = 'gs://{}/pipeline_module/{}'.format(
+#    GCS_BUCKET_NAME, PIPELINE_NAME)
+
+# Paths for users' data.
+#DATA_ROOT = 'gs://{}/data/{}'.format(GCS_BUCKET_NAME, PIPELINE_NAME)
+
+_DATA_PATH = 'gs://{}/tfx-template/data/taxi/'.format(configs.GCS_BUCKET_NAME)
+# how to version the training data
 
 
-METADATA_PATH = os.path.join('metadata', configs.PIPELINE_NAME, 'metadata.db')
 
 # The last component of the pipeline, "Pusher" will produce serving model under
 # SERVING_MODEL_DIR.
 _SERVING_MODEL_DIR = os.path.join(_PIPELINE_ROOT, 'serving_model')
 
 # This is the path where your model will be pushed for serving.
-SERVING_MODEL_DIR = 'gs://{}/serving_model/{}'.format(
-    GCS_BUCKET_NAME, PIPELINE_NAME)
+#SERVING_MODEL_DIR = 'gs://{}/serving_model/{}'.format(
+#    GCS_BUCKET_NAME, PIPELINE_NAME)
 
 
 
-# Paths for users' data.
-DATA_ROOT = 'gs://{}/data/{}'.format(GCS_BUCKET_NAME, PIPELINE_NAME)
+METADATA_PATH = os.path.join('metadata', configs.PIPELINE_NAME, 'metadata.db')
 
-_DATA_PATH = 'gs://{}/tfx-template/data/taxi/'.format(configs.GCS_BUCKET_NAME)
-# how to version the training data
+
 
 connection_config = metadata_store_pb2.ConnectionConfig()
-
 '''
 connection_config.mysql.host = '...'
 connection_config.mysql.port = '...'
@@ -71,7 +76,15 @@ connection_config.mysql.password = '...'
 store = metadata_store.MetadataStore(connection_config)
 '''
 
-
+# Pipeline arguments for Beam powered Components.
+# TODO(b/171316320): Change direct_running_mode back to multi_processing and set
+# direct_num_workers to 0.
+_beam_pipeline_args = [
+    '--direct_running_mode=multi_threading',
+    # 0 means auto-detect based on on the number of CPUs available
+    # during execution time.
+    '--direct_num_workers=1',
+]
 
 
 def run():
