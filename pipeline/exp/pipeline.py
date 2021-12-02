@@ -39,7 +39,7 @@ def create_pipeline(
     run_fn: Text,
     train_args: tfx.proto.TrainArgs,
     eval_args: tfx.proto.EvalArgs,
-    eval_accuracy_threshold: float,
+    #eval_accuracy_threshold: float,
     serving_model_dir: Text,
     metadata_connection_config: metadata_store_pb2.ConnectionConfig,
     beam_pipeline_args: Optional[List[Text]] = None,
@@ -52,7 +52,7 @@ def create_pipeline(
   """Implements the Penguin pipeline with TFX."""
 
   # Brings data into the pipeline or otherwise joins/converts training data.
-  example_gen = tfx.components.CsvExampleGen(input_base=data_path)
+  example_gen = tfx.components.CsvExampleGen(input_base=configs.DATA_PATH)
 
   # Computes statistics over data for visualization and example validation.
   statistics_gen = tfx.components.StatisticsGen(
@@ -70,7 +70,7 @@ def create_pipeline(
   transform = tfx.components.Transform(
       examples=example_gen.outputs['examples'],
       schema=schema_gen.outputs['schema'],
-      preprocessing_fn=preprocessing_fn)
+      preprocessing_fn=configs.PREPROCESSING_FN)
 
   trainer_args = {
       'run_fn': run_fn,
@@ -94,18 +94,19 @@ def create_pipeline(
   # Uses TFMA to compute evaluation statistics over features of a model and
   # perform quality validation of a candidate model (compared to a baseline).
   eval_config = tfma.EvalConfig(
-      model_specs=[tfma.ModelSpec(label_key='cnt')],
-      slicing_specs=[tfma.SlicingSpec()],
+      model_specs=[tfma.ModelSpec(signature_name='serving_default', label_key='cnt')],
+      slicing_specs=[tfma.SlicingSpec(),
+                     tfma.SlicingSpec(feature_keys=['weekday'])],
       metrics_specs=[
           tfma.MetricsSpec(metrics=[
               tfma.MetricConfig(
-                  class_name='Accuracy',
+                  class_name='MeanSquaredError',
                   threshold=tfma.MetricThreshold(
                       value_threshold=tfma.GenericValueThreshold(
-                          lower_bound={'value': eval_accuracy_threshold}),
+                          lower_bound={'value': 1}),
                       change_threshold=tfma.GenericChangeThreshold(
-                          direction=tfma.MetricDirection.HIGHER_IS_BETTER,
-                          absolute={'value': -1e-10})))
+                          direction=tfma.MetricDirection.LOWER_IS_BETTER,
+                          absolute={'value': -1e-1})))
           ])
       ])
 
@@ -116,23 +117,13 @@ def create_pipeline(
       baseline_model=model_resolver.outputs['model'],
       eval_config=eval_config)
   
-  pusher = tfx.extensions.google_cloud_ai_platform.Pusher(
+  pusher = tfx.components.Pusher(
       model=trainer.outputs['model'],
       model_blessing=evaluator.outputs['blessing'],
-      custom_config={
-          tfx.extensions.google_cloud_ai_platform.experimental
-          .PUSHER_SERVING_ARGS_KEY: ai_platform_serving_args,
-      })
-  pusher_args = {
-      'model':
-          trainer.outputs['model'],
-      'model_blessing':
-          evaluator.outputs['blessing'],
-  }
-  pusher_args['push_destination'] = tfx.proto.PushDestination(
+      push_destination=tfx.proto.PushDestination(
         filesystem=tfx.proto.PushDestination.Filesystem(
-            base_directory=serving_model_dir))
-  pusher = tfx.components.Pusher(**pusher_args)
+            base_directory=configs.SERVING_MODEL_DIR)))  
+
   
   return tfx.dsl.Pipeline(
       pipeline_name=pipeline_name,
