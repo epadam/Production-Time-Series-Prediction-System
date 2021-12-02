@@ -25,9 +25,32 @@ _FEATURE_KEYS = [
 _LABEL_KEY = 'cnt'
 
 
+def _get_serve_tf_examples_fn(model, tf_transform_output):
+  """Returns a function that parses a serialized tf.Example and applies TFT."""
+
+  model.tft_layer = tf_transform_output.transform_features_layer()
+
+  @tf.function
+  def serve_tf_examples_fn(serialized_tf_examples):
+    """Returns the output to be used in the serving signature."""
+    feature_spec = tf_transform_output.raw_feature_spec()
+    feature_spec.pop(_LABEL_KEY)
+    parsed_features = tf.io.parse_example(serialized_tf_examples, feature_spec)
+    transformed_features = model.tft_layer(parsed_features)
+    return model(transformed_features)
+
+  return serve_tf_examples_fn
+
+_FEATURE_KEYS = [
+   'season_xf', 'yr_xf', 'mnth_xf', 'holiday_xf', 'weekday_xf', 'workingday_xf', 'weathersit_xf', 'temp_xf', 'atemp_xf', 'hum_xf', 'windspeed_xf'
+]
+
+
 _TRAIN_DATA_SIZE = 658
 _TRAIN_BATCH_SIZE = 20
+_EVAL_BATCH_SIZE = 20
 
+'''
 def _input_fn(
     file_pattern: str,
     data_accessor: DataAccessor,
@@ -52,11 +75,25 @@ def _input_fn(
     feature_list.append(np.stack(features, axis=-1))
 
   return np.concatenate(feature_list), np.concatenate(label_list)
+'''
+
+def _input_fn(
+    file_pattern: str,
+    data_accessor: DataAccessor,
+    tf_transform_output: tft.TFTransformOutput,
+    batch_size: int = 20,
+) -> tf.data.Dataset:
+  return data_accessor.tf_dataset_factory(
+      file_pattern,
+      dataset_options.TensorFlowDatasetOptions(
+          batch_size=batch_size,
+          label_key=features.transformed_name(_LABEL_KEY)
+          ),
+      schema=tf_transform_output.transformed_metadata.schema).repeat()
 
 
 def _build_keras_model() -> tf.keras.Model:
   """Creates a DNN Keras model for classifying penguin data.
-
   Returns:
     A Keras Model.
   """
@@ -66,17 +103,57 @@ def _build_keras_model() -> tf.keras.Model:
   d = keras.layers.concatenate(inputs)
   for _ in range(2):
     d = keras.layers.Dense(8, activation='relu')(d)
-  outputs = keras.layers.Dense(3)(d)
+  outputs = keras.layers.Dense(1)(d)
 
   model = keras.Model(inputs=inputs, outputs=outputs)
   model.compile(
       optimizer=keras.optimizers.Adam(1e-2),
-      loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-      metrics=[keras.metrics.SparseCategoricalAccuracy()])
+      loss=tf.keras.losses.mse,
+      metrics=[keras.metrics.MeanSquaredError()])
 
   model.summary(print_fn=logging.info)
   return model
 
+
+def run_fn(fn_args: FnArgs):
+  tf_transform_output = tft.TFTransformOutput(fn_args.transform_output)
+
+  train_dataset = _input_fn(
+      fn_args.train_files,
+      fn_args.data_accessor,
+      tf_transform_output,
+      batch_size=_TRAIN_BATCH_SIZE)
+  eval_dataset = _input_fn(
+      fn_args.eval_files,
+      fn_args.data_accessor,
+      tf_transform_output,
+      batch_size=_EVAL_BATCH_SIZE)
+
+  model = _build_keras_model()
+
+  tensorboard_callback = tf.keras.callbacks.TensorBoard(
+      log_dir=fn_args.model_run_dir, update_freq='batch')
+   
+  model.fit(
+      train_dataset,
+      steps_per_epoch=fn_args.train_steps,
+      validation_data=eval_dataset,
+      validation_steps=fn_args.eval_steps,
+      callbacks=[tensorboard_callback])
+   
+  signatures = {
+      'serving_default':
+          _get_serve_tf_examples_fn(model,
+                                    tf_transform_output).get_concrete_function(
+                                        tf.TensorSpec(
+                                            shape=[None],
+                                            dtype=tf.string,
+                                            name='examples')),
+  }
+  model.save(fn_args.serving_model_dir, save_format='tf', signatures=signatures)
+
+   
+'''
 def run_fun(fn_args: FnArgs):
    schema = schema_utils.schema_from_feature_spec(_FEATURE_SPEC)
 
@@ -99,7 +176,7 @@ def run_fun(fn_args: FnArgs):
       validation_steps=fn_args.eval_steps)
    model.save(fn_args.serving_model_dir, save_format='tf')
 
-'''
+
 def run_fn(fn_args: FnArgs):
   """Train the model based on given args.
   Args:
