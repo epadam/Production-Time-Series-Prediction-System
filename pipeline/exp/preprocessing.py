@@ -72,6 +72,8 @@ def preprocessing_fn(inputs):
 
   for key in _CATEGORICAL_FEATURE_KEYS:
     outputs[key] = _fill_in_missing(inputs[key])
+  
+  outputs[features.transformed_name(_LABEL_KEY)] = tft.scale_to_z_score(_fill_in_missing(inputs[_LABEL_KEY]))
 
   # Was this passenger a big tipper?
   '''
