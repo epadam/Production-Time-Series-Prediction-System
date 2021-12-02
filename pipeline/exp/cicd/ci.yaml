@@ -41,6 +41,6 @@ jobs:
         if: steps.my-pipeline-change.outputs.src == 'true'
         run: |
           gcloud builds submit --no-source --timeout=60m \
-          --config build/pipeline-deployment.yaml \
+          --config deployment.yaml \
           --substitutions $SUBSTITUTIONS \
           --machine-type=n1-highcpu-8
