@@ -53,6 +53,8 @@ RUN_FN = 'model.run_fn'
 # NOTE: Uncomment below to use an estimator based model.
 # RUN_FN = 'models.estimator_model.model.run_fn'
 
+trainer_module_file = os.path.join(
+    _bike_root, 'util', 'bike_utils_sklearn.py')
 
 ### Training parameters
 
