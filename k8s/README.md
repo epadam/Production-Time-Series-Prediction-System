@@ -32,6 +32,8 @@ For Production:
 
 1. Kafka with Zookeeper
 
+2. Deploy LabelStudio
+
 ### Machine Learning
 
 1. Kubeflow (it includes Seldon, minIO, Istio, Spark, Jupyter Notebook)
