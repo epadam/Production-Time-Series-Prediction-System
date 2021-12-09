@@ -32,7 +32,7 @@ For Production:
 
 1. Kafka with Zookeeper
 
-2. Deploy LabelStudio
+2. LabelStudio
 
 ### Machine Learning
 
