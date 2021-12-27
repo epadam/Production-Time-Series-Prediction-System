@@ -16,22 +16,30 @@
     git init to sync to the repo
     Define parameters (data root, storage, mlflow init, dvc init)
 
-2. Load the data from data storage, do EDA, model training, evaluation
+2. Load the data from data storage, do EDA, 
     
     add your data to dvc
     tools you can use for evaluation and inspection
     a. microsoft reliable AI 
+    
+    
+3. Model training, debugging and evaluation
+   Just metrics like accuracy is not enough,  
+   tools you can use for model debugging
+   a. Tensorflow model analysis
+   b. Responsible model ai-toolbox
+   c. Manifold
 
 
-3. Build tfx pipeline components and compile the pipeline
+4. Build tfx pipeline components and compile the pipeline
 
-4. upload to kubeflow to run
+5. upload to kubeflow to run
 
-5. Write the deployment yaml for seldon model serving including monitoring (seldon core analytics should already there, but drift, outlier, adversirial detection)
+6. Write the deployment yaml for seldon model serving including monitoring (seldon core analytics should already there, but drift, outlier, adversirial detection)
 
-6. Push all the code to the git repo
+7. Push all the code to the git repo
 
-7. Write CI/CD script with github actions, cloudbuild.yaml to automate image, pipeline building and deployment
+8. Write CI/CD script with github actions, cloudbuild.yaml to automate image, pipeline building and deployment
 
     For retraining pipeline:
     CI trigger --> CI script 
