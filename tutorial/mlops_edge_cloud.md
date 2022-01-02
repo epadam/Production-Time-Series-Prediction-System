@@ -1,13 +1,18 @@
-## MLOps for Edge
+## MLOps
 
 ## MLOps Level 0
 
+Example:
+
 ## MLOps Level 1
+
+Example:
 
 ## MLOps Level 2
 
+Example:
 
-## Model Deployment Options
+## Model Deployment Options for Edge
 
 1. Github Large File Store
 2. Model is stored in Registry. Script fetching the models from Registry when building 
