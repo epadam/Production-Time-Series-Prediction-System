@@ -2,13 +2,19 @@
 
 ## MLOps Level 0
 
+Manual, no CI/CD, 
+
 Example:
 
 ## MLOps Level 1
 
+pipeline, manually deployed. CD for model deployment
+
 Example:
 
 ## MLOps Level 2
+
+CI/CD for pipeline, CD for model
 
 Example:
 
