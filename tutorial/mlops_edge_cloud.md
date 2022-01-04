@@ -2,21 +2,21 @@
 
 ## MLOps Level 0
 
-Manual, no CI/CD, 
+Manual, no pipeline, no CI/CD automation
 
-Example:
+Example: Assemly Line, robots only recognize fixed number of objects. It won't change 
 
 ## MLOps Level 1
 
-pipeline, manually deployed. CD for model deployment
+ manually deployed pipeline,. CD for model deployment
 
-Example:
+Example: 
 
 ## MLOps Level 2
 
-CI/CD for pipeline, CD for model
+CI/CD automation for pipeline, CD for model
 
-Example:
+Example: Stock Price prediction
 
 ## Model Deployment Options for Edge
 
