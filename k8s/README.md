@@ -2,9 +2,13 @@
 
 ## Docker Compose
 
-### Data Engineering 
+### Streaming Data Collecting
 
-1. Kafka with Zookeeper
+* Kafka with Zookeeper (data streaming)
+
+### For data labeling
+
+* Deploy Labelme
 
 ### Machine Learning
 
@@ -20,17 +24,20 @@ For Development:
 
 For Production:
 
+    1. Kafka with Zookeeper (if streaming data)
+
     1. Monitoring logging using ELK
 
     2. Monitoring Metrics with Prometheus
 
+### For Data Collecting
 
 
 ## Kubernetes
 
 ### Data Engineering 
 
-1. Kafka with Zookeeper
+1. Kafka with Zookeeper (data collecting)
 
 2. LabelStudio
 
