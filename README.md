@@ -7,24 +7,25 @@ Please follow here to set up the environment on an instance or a kubernetes clus
 https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
 
-
 ## Machine Learning Project in Production
-
 
 ### Data Engineering
 
-Please see the instruction in the folder:
-
-
+Please see the instruction [here](https://github.com/epadam/production-level-machine-learning/tree/master/Data_Engineering):
 
 ### Model Developing and Deploying Process
 
 Here we use bike sharing dataset as example, we split the dataset to half and trigger the retraining when upload the other half to gcs. 
 
-1. Set up the parameters and load dataset from database, feature store or, file storage
+1. Set up the parameters and load dataset from database, feature store or file storage.
 
 2. EDA, Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
     Use mlflow, tensorboard, dvc to track your data and model
+    
+    a. Evaluate your model
+    
+    b. Debugging your model
+   
 
 3. (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline)
     
@@ -65,7 +66,7 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
     
     b. At the edge:
     
-    Please check the following guide
+    Please check the guide [here](tutorial/mlops_edge_cloud.md)
     
    
 
