@@ -11,7 +11,6 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
 ## Machine Learning Project in Production
 
 
-
 ### Data Engineering
 
 Please see the instruction in the folder:
@@ -41,7 +40,7 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
 
     https://billtcheng2013.medium.com/hello-world-to-github-actions-for-mlops-with-google-cloud-f5917b80d8a9
 
-    a. set up env. secret in github secrets
+    set up env. secret in github secrets
 
     https://github.com/NikeNano/kubeflow-github-action
 
@@ -54,6 +53,7 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
     2. And the CLI to create the pipeline.
 
 5. Deploy, monitor and logging the model
+    a. On the cloud:
     
     Seldon Core(outlier detection, explainer, drift detector, adversirial, Auditability), where do you store the explain results?
     
@@ -62,6 +62,11 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
     Metrics like performance, explainer is going to Prometheus and can be visualized with Grafana
     
     Logging is sending to ELK for further analysis
+    
+    b. At the edge:
+    
+    Please check the following guide
+    
    
 
 ## Retraining Process
