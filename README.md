@@ -1,19 +1,38 @@
 # Production Level Machine Learning
 
-## Environment setup for MLOps
+## How to setup infrastructure for Production Machine Learning
 
 Please follow here to set up the environment on an instance or a kubernetes cluster (including mlflow, kubeflow)
 
 https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
 
-## Machine Learning Project in Production
+## What is the target and what data do you need?
 
-### Data Engineering
+1. What it the target and data type?
+
+   a. Structured Data 
+     
+     - Regression
+
+     - Classification
+    
+   b. Unstructured Data
+      
+     - Text
+
+     - Image, Videos
+
+   c. Multimodal Data
+ 
+## How to collect your data
+
+
+## Process your data (Data Engineering)
 
 Please see the instruction [here](https://github.com/epadam/production-level-machine-learning/tree/master/Data_Engineering):
 
-### Model Developing and Deploying Process
+## How to develop your model
 
 Here we use bike sharing dataset as example, we split the dataset to half and trigger the retraining when upload the other half to gcs. 
 
@@ -34,8 +53,24 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
     The meta data of the tfx pipeline is recorded with ML Metadata. After running the pipeline use the notebook to investigate the metadata
     
     Using PV and PVC as local storage between components
+
+## How to deploy, monitor and logging the model?
+
+    a. On the cloud:
     
-4. Developing CI/CD/CT for the model (github actions, Jenkins)
+    Seldon Core(outlier detection, explainer, drift detector, adversirial, Auditability), where do you store the explain results?
+    
+    Seldon suports A/B test, Canary Deployment, Shadow deployment
+    
+    Metrics like performance, explainer is going to Prometheus and can be visualized with Grafana
+    
+    Logging is sending to ELK for further analysis
+    
+    b. At the edge:
+    
+    Please check the guide [here](tutorial/mlops_edge_cloud.md)
+
+## How to do CI/CD/CT automation for the model (github actions, Jenkins)
 
     CI with github actions:
 
@@ -53,24 +88,7 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
     1. A Docker container image containing our pipeline and dependencies. The image is pushed to the Google Container Registry.
     2. And the CLI to create the pipeline.
 
-5. Deploy, monitor and logging the model
-    a. On the cloud:
-    
-    Seldon Core(outlier detection, explainer, drift detector, adversirial, Auditability), where do you store the explain results?
-    
-    Seldon suports A/B test, Canary Deployment, Shadow deployment
-    
-    Metrics like performance, explainer is going to Prometheus and can be visualized with Grafana
-    
-    Logging is sending to ELK for further analysis
-    
-    b. At the edge:
-    
-    Please check the guide [here](tutorial/mlops_edge_cloud.md)
-    
-   
-
-## Retraining Process
+### Trigger Retraining Process
 
 Following two condition will trigger the retraining process:
 
@@ -78,9 +96,8 @@ a. Retrain the model when new data is available or concept drift happened (Kubef
 
 b. When updating the code of retraining pipeline or detecting concept drift, trigger github actions to test the retraining pipeline, followed by CD to the test environment and finally deploy it in production 
 
+c. M
 
-## Visualization
-    You can also try streamlit to check what seldon core offers
 
 
 
