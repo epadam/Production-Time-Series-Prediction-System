@@ -36,9 +36,16 @@ Machine learning models development is only little part of the whole ML system.
 
 ![Process Flow](https://lh3.googleusercontent.com/mo__PxmD2aALaziBfjdJ9NvjDs8dFji6A6b52FneDSj8cf9lV5XKJGwCArEZ0nFZQ37_IYJaEdeLVTjmduj-ryvtCk-dfhaZUMZLVKJ67x5uSFVDbwsnIAirXl4IK5cYt2uDWhGr)
 
+0. Data Source 
+   - Images
+   - Text
+   - IoT, Sensors
+   - Web
+
 1. Data Acquisition or Collection:
    - ELK
    - Kafka
+   - Rest API 
 
 2. Data Store:
    - File Storage:
@@ -69,19 +76,23 @@ Machine learning models development is only little part of the whole ML system.
    - Tensorflow Transform
 
 7. Data Preparation/Version Control:
-   - Split
    - DVC
+   - Pachyderm
 
 8. Model Training/Tracking/Evaluation:
    - Tracking
      - Mlflow 
-   - Inspection
-     - Shap
+   - Debugging
+     - Microsoft Responsible AI Widget
      - Tensorflow Model Analysis
+   - Explaination
+     - SHAP
+      
 
 9. Model Deployment: 
-   - Seldon
+   - Seldon Core
    - KFServing
+   - TorchServing
 
 10. Model Monitoring:
    * Data Quality
@@ -89,15 +100,24 @@ Machine learning models development is only little part of the whole ML system.
      * Outlier detection
    * Metrics 
    * Concept Drift
-   * Concerted adversaries
+   * Concerted Sdversaries
    * Operational related index
    - Elasticsearch APM
    - Prometheous
 
-X. Pipeline Orchestration:
-   Steps above can be built by pipeline orchestration tool
+11. Retraining Pipeline Orchestration: 
+   - tfx
    - Kubeflow
    - Airflow
+   - Framework
+     - ZenML
+     - ClearML
+     - mlrun
+ 
+ 12. CI/CD Automation:
+    - Jenkins
+    - Github Actions
+    - Cloud Build
   
 
 
@@ -158,10 +178,6 @@ SOD [`github`](https://github.com/symisc/sod)
 
 MMdnn [`github`](https://github.com/Microsoft/MMdnn)
 
-
-### Model Inspection
-
-Please refer to [Responsible AI](Responsible_AI.md)
 
 ## Model Format for Deployment
 
