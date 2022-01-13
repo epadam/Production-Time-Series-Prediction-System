@@ -11,7 +11,7 @@
     
     Build the Docker Image and Push to the registry
 
-2. ETL, Data Labeling (denmamize customers personal information from database, transform the format you need and store in feature store)
+2. ETL (ex: denmamize customers personal information from database, transform the format you need and store in feature store)
 
     Requirements:
     
@@ -23,7 +23,11 @@
     
     Build the Docker Image
 
-3. Orchestrate the pipeline (Airflow)
+3. (optional) Data Labeling 
+   
+   * Use pre-trained model to pre annotate the data
+   
+5. Orchestrate the pipeline (Airflow)
 
 4. Develop CI/CD for your Data Processing pipeline
 
