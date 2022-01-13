@@ -36,15 +36,17 @@ Please see the instruction [here](https://github.com/epadam/production-level-mac
 
 Here we use bike sharing dataset as example, we split the dataset to half and trigger the retraining when upload the other half to gcs. 
 
-1. Set up the parameters and load dataset from database, feature store or file storage.
+1. Set up the parameters and configurations for storage and database for tracking and artifact, metadata storage
+2. Load data from database, feature store or file storage. Do EDA, data augmentation 
 
-2. EDA, Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
+2. Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
     Use mlflow, tensorboard, dvc to track your data and model
     
     a. Evaluate your model
     
     b. Debugging your model
    
+    *If you don't have much data, you can do active learning
 
 3. (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline)
     
