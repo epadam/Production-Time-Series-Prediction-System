@@ -31,25 +31,19 @@
    b. Responsible model ai-toolbox
    
    c. Manifold
+   
+4. Build tfx pipeline components and compile the pipeline and write retraining trigger code/funcion(the component can include retraining trigger function)
 
+5. upload to kubeflow to test the pipeline
 
-4. Build tfx pipeline components and compile the pipeline
-
-5. upload to kubeflow to run
-
-6. Write the deployment yaml for seldon model serving including monitoring (seldon core analytics should already there, but drift, outlier, adversirial detection)
+6. Write the deployment yaml for seldon model serving including monitoring, (data for retraining collection), and model retraining trigger logic for concept drift, data drift, adversirial attack. 
 
 7. Write CI/CD script with github actions, cloudbuild.yaml to automate image, pipeline building and deployment
 
-    For retraining pipeline:
-    CI trigger --> CI script 
-
-    CD trigger --> CD script
-
-    If model deployment is not in the pipeline:
-    CD trigger --> CD script
+    For retraining pipeline: (model is trained in the deployed pipeline)
     
-    No retraining pipeline:
-    CI trigger --> CI script --> (CD script)
+    model code change -> CI trigger --> CI script --> CD trigger --> CD script --> deployed pipeline --> model deployed (or push to registry --> CD for model deployment)
     
-    CD trigger --> CD script
+    No retraining pipeline: (model is train in the CI script)
+    
+    model/data change -> CI trigger --> CI script for retrain the model --> CD trigger --> CD script --> model deployede
