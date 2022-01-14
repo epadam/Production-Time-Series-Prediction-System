@@ -6,10 +6,7 @@ Please follow here to set up the environment on an instance or a kubernetes clus
 
 https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
-
-## What is the target and what data do you need?
-
-1. What it the target and data type?
+## What it the target and data type?
 
    a. Structured Data 
      
@@ -27,7 +24,6 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
  
 ## How to collect your data
 
-
 ## Process your data (Data Engineering)
 
 Please see the instruction [here](https://github.com/epadam/production-level-machine-learning/tree/master/Data_Engineering):
@@ -39,7 +35,7 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
 1. Set up the parameters and configurations for storage and database for tracking and artifact, metadata storage
 2. Load data from database, feature store or file storage. Do EDA, data augmentation 
 
-2. Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
+3. Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
     Use mlflow, tensorboard, dvc to track your data and model
     
     a. Evaluate your model
@@ -48,7 +44,7 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
    
     *If you don't have much data, you can do active learning
 
-3. (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline)
+4. (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline)
     
     https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
     
