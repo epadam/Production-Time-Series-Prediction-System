@@ -94,13 +94,11 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
 
 Following two condition will trigger the retraining process:
 
-a. Retrain the model when new data is available or concept drift happened (Kubeflow Pipeline, here we use the other half data)
-
-b. When updating the code of retraining pipeline or detecting concept drift, trigger github actions to test the retraining pipeline, followed by CD to the test environment and finally deploy it in production 
-
-c. M
-
-
+Retrain the model when: (Kubeflow Pipeline, here we use the other half data), every retraining data should be versioned
+ * code or model updated in the repo (trigger rebuild and retrain the pipeline using github action, run CI/CD for the pipeline, then CD for the model)
+ * data uploaded to the repo (trigger run the retraining pipeline using github action, no new pipeline deployed)
+ * data upload to the storage (trigger run the deployed retraining pipeline using components in kubeflow or cloud build)
+ * concept drift detected (trigger running the deployed pipeline with the new data in storage or repo using monitoring and cloudbuild or kubeflow component)
 
 
 ## Reference
