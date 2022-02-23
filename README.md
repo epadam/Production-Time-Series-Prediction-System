@@ -1,5 +1,7 @@
 # Production Level Machine Learning
 
+Don't just train the models on your computer, build a system for it
+
 ## Make this specific and move the general to the tutorial
 
 ## How to setup infrastructure for Production Machine Learning
