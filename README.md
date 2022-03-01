@@ -28,17 +28,19 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
  
 ## How to collect your data
 
+1. Web
+2. Internal Data
+
+
 ## Process your data (Data Engineering)
 
 Please see the instruction [here](https://github.com/epadam/production-level-machine-learning/tree/master/Data_Engineering):
-
-
 
 ## How to develop your model
 
 Here we use bike sharing dataset as example, we split the dataset to half and trigger the retraining when upload the other half to gcs. 
 
-### Prepare your Dataset
+### Prepare your dataset
 
 2. Load data from database, feature store or file storage. Do EDA, data augmentation 
 
@@ -54,7 +56,7 @@ Decsion Tree or Deep Learning
 
 Tracking (dvc, mlflow, tensorboard, dvc to track your data and model
 
-Select your MLOps tools
+Select your MLOps tools (ClearML, Kubeflow, Mlflow)
 
 ### Evaluate and Debugging your model
     
@@ -71,11 +73,14 @@ Select your MLOps tools
 
 ## Deploy, Monitor, Logging your Model
 
+
     a. On the cloud:
     
     Seldon Core(outlier detection, explainer, drift detector, adversirial, Auditability), where do you store the explain results?
     
     Seldon suports A/B test, Canary Deployment, Shadow deployment
+    
+    Monitor your model
     
     Metrics like performance, explainer is going to Prometheus and can be visualized with Grafana
     
@@ -130,7 +135,11 @@ https://www.iteblog.com/ppt/dataai-summit-euepadarope-2020/data-versioning-and-r
 
 2. https://towardsdatascience.com/production-machine-learning-monitoring-outliers-drift-explainers-statistical-performance-d9b1d02ac158
 
+### Open Source/Commercial Platform
 
+* H2O
+* OnePanel
+* AnalyticsZoo
 
 
 
