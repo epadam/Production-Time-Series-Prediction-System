@@ -85,7 +85,7 @@ model as code:
 
 model as data:
 
-Tensorflow Lite, OpenVino, Caffe2, ONNX, SavedModel, TorchScript
+Tensorflow Lite, OpenVino, Caffe2, ONNX, SavedModel, TorchScript, TensorRT
 
 ## Deploy, Monitor, Logging your Model
 
