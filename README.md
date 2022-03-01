@@ -56,7 +56,7 @@ or you can use AutoML(AutoGloun, AutoKeras)
 
 https://conferences.oreilly.com/tensorflow/tf-ca-2019/public/schedule/detail/80640.html
 
-### Train and Track your model
+### Train and Track your models
 
 1. Set up the parameters and configurations for storage and database for tracking and artifact, metadata storage
 
@@ -70,7 +70,7 @@ Track the model with the infrastructure setup (dvc, mlflow, tensorboard, dvc to 
 
 4. Do you need federated Learning?
 
-### Evaluate and Debugging your model
+### Evaluate, Debugging and compare your model
     
     b. Debugging and explain your model
     microsoft responsible AI toolkit, LIT, Manifold, Tensorboard
