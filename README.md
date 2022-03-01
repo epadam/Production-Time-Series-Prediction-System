@@ -32,7 +32,7 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
 2. Internal Data
 
 
-## Process your data (Data Engineering)
+## Process your data (Data Engineering, ETL)
 
 Please see the instruction [here](https://github.com/epadam/production-level-machine-learning/tree/master/Data_Engineering):
 
@@ -44,11 +44,11 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
 
 2. Load data from database, feature store or file storage. Do EDA, data augmentation 
 
-* If you don't have much labeled data, you can do active learning(you annotate few data)
+* If you don't have much labeled data, you can do active learning (you annotate few data, model ask you for uncertained labeled)
 
 ### Select your model
 
-Decsion Tree or Deep Learning
+Decision Tree or Deep Learning (check how Uber use Deep learning for EDA)
 
 ### Train your model
 
@@ -60,10 +60,12 @@ Select your MLOps tools (ClearML, Kubeflow, Mlflow)
 
 ### Evaluate and Debugging your model
     
-    b. Debugging your model
-    microsoft responsible AI toolkit
-   
-### (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline)
+    b. Debugging and explain your model
+    microsoft responsible AI toolkit, LIT, 
+    
+    Optimize your model for different platforms,  
+    
+### (Optional) Build a machine learning retraining pipeline (mlrun, tfx, kubeflow pipeline)
     
     https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
     
@@ -72,7 +74,6 @@ Select your MLOps tools (ClearML, Kubeflow, Mlflow)
     Using PV and PVC as local storage between components
 
 ## Deploy, Monitor, Logging your Model
-
 
     a. On the cloud:
     
