@@ -81,7 +81,11 @@ Track the model with the infrastructure setup (dvc, mlflow, tensorboard, dvc to 
 
 Export your model for different platforms, 
 
-model as code vs model as data
+model as code:
+
+model as data:
+
+Tensorflow Lite, OpenVino, Caffe2, ONNX, SavedModel, TorchScript
 
 ## Deploy, Monitor, Logging your Model
 
