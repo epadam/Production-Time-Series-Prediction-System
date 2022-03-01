@@ -12,8 +12,10 @@ Select your MLOps tools (ClearML, Kubeflow, Mlflow)
 
 https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
+Use commercial platform or build your own one with open source
+(Neptune, H2O auto) ,  (Kubeflow, H2O, analyticsZoo)
 
-## What it the target and data type?
+## What is the target and data type?
 
    a. Structured Data 
      
@@ -81,14 +83,6 @@ Export your model for different platforms,
 
 model as code vs model as data
 
-### (Optional) Build a machine learning retraining pipeline (mlrun, tfx, kubeflow pipeline)
-    
-    https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
-    
-    The meta data of the tfx pipeline is recorded with ML Metadata. After running the pipeline use the notebook to investigate the metadata
-    
-    Using PV and PVC as local storage between components (visualize your meta data)
-
 ## Deploy, Monitor, Logging your Model
 
     a. On the cloud:
@@ -105,7 +99,17 @@ model as code vs model as data
     
     b. At the edge:
     
+    Android, Pi, Self Driving Car
+    
     Please check the guide [here](tutorial/mlops_edge_cloud.md)
+
+## (Optional) Build a machine learning retraining pipeline (mlrun, tfx, kubeflow pipeline)
+    
+    https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
+    
+    The meta data of the tfx pipeline is recorded with ML Metadata. After running the pipeline use the notebook to investigate the metadata
+    
+    Using PV and PVC as local storage between components (visualize your meta data)
 
 ## Do CI/CD/CT automation for the model (github actions, Jenkins)
 
