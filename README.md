@@ -91,6 +91,10 @@ Tensorflow Lite, OpenVino, Caffe2, ONNX, SavedModel, TorchScript
 
     a. On the cloud:
     
+    * Embedded:
+    
+    * Microservice:
+    
     Seldon Core(outlier detection, explainer, drift detector, adversirial, Auditability), where do you store the explain results?
     
     Seldon suports A/B test, Canary Deployment, Shadow deployment
