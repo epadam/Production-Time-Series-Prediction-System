@@ -32,23 +32,36 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
 Please see the instruction [here](https://github.com/epadam/production-level-machine-learning/tree/master/Data_Engineering):
 
+
+
 ## How to develop your model
 
 Here we use bike sharing dataset as example, we split the dataset to half and trigger the retraining when upload the other half to gcs. 
 
-1. Set up the parameters and configurations for storage and database for tracking and artifact, metadata storage
+### Prepare your Dataset
+
 2. Load data from database, feature store or file storage. Do EDA, data augmentation 
 
-3. Model Development/Tacking/Evaluation (dvc, mlflow, microsoft responsible AI toolkit)
-    Use mlflow, tensorboard, dvc to track your data and model
-    
-    a. Evaluate your model
+* If you don't have much labeled data, you can do active learning(you annotate few data)
+
+### Select your model
+
+Decsion Tree or Deep Learning
+
+### Train your model
+
+1. Set up the parameters and configurations for storage and database for tracking and artifact, metadata storage
+
+Tracking (dvc, mlflow, tensorboard, dvc to track your data and model
+
+Select your MLOps tools
+
+### Evaluate and Debugging your model
     
     b. Debugging your model
+    microsoft responsible AI toolkit
    
-    *If you don't have much data, you can do active learning
-
-4. (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline)
+### (Optional) Once done model development, build a machine learning pipeline for retraining (mlrun, tfx, kubeflow pipeline)
     
     https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
     
@@ -56,7 +69,7 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
     
     Using PV and PVC as local storage between components
 
-## How to deploy, monitor and logging the model?
+## Deploy, Monitor, Logging your Model
 
     a. On the cloud:
     
@@ -72,7 +85,7 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
     
     Please check the guide [here](tutorial/mlops_edge_cloud.md)
 
-## How to do CI/CD/CT automation for the model (github actions, Jenkins)
+## Do CI/CD/CT automation for the model (github actions, Jenkins)
 
     CI with github actions:
 
