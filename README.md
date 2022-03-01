@@ -31,7 +31,6 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
 1. Web
 2. Internal Data
 
-
 ## Process your data (Data Engineering, ETL)
 
 Please see the instruction [here](https://github.com/epadam/production-level-machine-learning/tree/master/Data_Engineering):
@@ -42,36 +41,50 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
 
 ### Prepare your dataset
 
-2. Load data from database, feature store or file storage. Do EDA, data augmentation 
-
-* If you don't have much labeled data, you can do active learning (you annotate few data, model ask you for uncertained labeled)
+2. Load data from database, feature store or file storage. Do EDA, data augmentation, data visualization
 
 ### Select your model
 
 Decision Tree or Deep Learning (check how Uber use Deep learning for EDA)
 
-### Train your model
+or you can use AutoML(AutoGloun, AutoKeras)
+
+https://conferences.oreilly.com/tensorflow/tf-ca-2019/public/schedule/detail/80640.html
+
+### Train and Track your model
 
 1. Set up the parameters and configurations for storage and database for tracking and artifact, metadata storage
 
-Tracking (dvc, mlflow, tensorboard, dvc to track your data and model
+Tracking (dvc, mlflow, tensorboard, dvc to track your data and model)
 
 Select your MLOps tools (ClearML, Kubeflow, Mlflow)
+
+2. Do you need distributed Training?
+
+3. Do you need active learning?
+
+* If you don't have much labeled data, you can do active learning (you annotate few data, model ask you for uncertained labeled)
+
+4. Do you need federated Learning?
 
 ### Evaluate and Debugging your model
     
     b. Debugging and explain your model
-    microsoft responsible AI toolkit, LIT, 
+    microsoft responsible AI toolkit, LIT, Manifold, Tensorboard
     
-    Optimize your model for different platforms,  
-    
+    Optimize your model for different platforms, model compression
+
+### Export your model
+
+Export your model for different platforms, model as code vs model as data
+
 ### (Optional) Build a machine learning retraining pipeline (mlrun, tfx, kubeflow pipeline)
     
     https://sbakiu.medium.com/productionalizing-ml-with-kubernetes-kubeflow-and-seldon-core-39aed36ade83
     
     The meta data of the tfx pipeline is recorded with ML Metadata. After running the pipeline use the notebook to investigate the metadata
     
-    Using PV and PVC as local storage between components
+    Using PV and PVC as local storage between components (visualize your meta data)
 
 ## Deploy, Monitor, Logging your Model
 
