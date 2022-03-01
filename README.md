@@ -8,7 +8,10 @@ Don't just train the models on your computer, build a system for it
 
 Please follow here to set up the environment on an instance or a kubernetes cluster (including mlflow, kubeflow)
 
+Select your MLOps tools (ClearML, Kubeflow, Mlflow)
+
 https://github.com/epadam/production-level-data-analysis/new/master/k8s
+
 
 ## What it the target and data type?
 
@@ -26,12 +29,12 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
    c. Multimodal Data
  
-## How to collect your data
+## Data Collecting Setup
 
 1. Web
 2. Internal Data
 
-## Process your data (Data Engineering, ETL)
+## Data processing pipeline infrastructure for your data (Data Engineering, ETL)
 
 Please see the instruction [here](https://github.com/epadam/production-level-machine-learning/tree/master/Data_Engineering):
 
@@ -41,7 +44,7 @@ Here we use bike sharing dataset as example, we split the dataset to half and tr
 
 ### Prepare your dataset
 
-2. Load data from database, feature store or file storage. Do EDA, data augmentation, data visualization
+Load data from database, feature store or file storage. Do EDA, data augmentation, data visualization
 
 ### Select your model
 
@@ -55,9 +58,7 @@ https://conferences.oreilly.com/tensorflow/tf-ca-2019/public/schedule/detail/806
 
 1. Set up the parameters and configurations for storage and database for tracking and artifact, metadata storage
 
-Tracking (dvc, mlflow, tensorboard, dvc to track your data and model)
-
-Select your MLOps tools (ClearML, Kubeflow, Mlflow)
+Track the model with the infrastructure setup (dvc, mlflow, tensorboard, dvc to track your data and model)
 
 2. Do you need distributed Training?
 
@@ -72,11 +73,13 @@ Select your MLOps tools (ClearML, Kubeflow, Mlflow)
     b. Debugging and explain your model
     microsoft responsible AI toolkit, LIT, Manifold, Tensorboard
     
-    Optimize your model for different platforms, model compression
+    Optimize your model and model compression
 
 ### Export your model
 
-Export your model for different platforms, model as code vs model as data
+Export your model for different platforms, 
+
+model as code vs model as data
 
 ### (Optional) Build a machine learning retraining pipeline (mlrun, tfx, kubeflow pipeline)
     
