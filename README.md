@@ -6,6 +6,7 @@ Don't just train the models on your computer, build a system for it
 
 ## How to setup infrastructure for Production Machine Learning
 
+This includes your model tracking server, model registry, notebook enviroment
 Please follow here to set up the environment on an instance or a kubernetes cluster (including mlflow, kubeflow)
 
 Select your MLOps tools (ClearML, Kubeflow, Mlflow)
