@@ -1,8 +1,9 @@
 ## Data Engineering
 
-0. Install Infrastructure on Kubernetes (Kafka, Zookeeper, LabelStudio, Create a GCP project)
+0. Install Infrastructure on Kubernetes (Kafka, Zookeeper, LabelStudio, Create a GCP project, data storage)
 
 1. Data Collection (from IoT, web or other sources, streaming data or bulk)
+    
     a. API fetching example
     
     Build the Docker Image and Push to the registry
@@ -27,9 +28,9 @@
    
    * Use pre-trained model to pre annotate the data
    
-5. Orchestrate the pipeline (Airflow)
+4. Orchestrate the pipeline (Airflow)
 
-4. Develop CI/CD for your Data Processing pipeline
+5. Develop CI/CD automation for your Data Processing pipeline (data collection, ETL, Airflow)
 
-5. Deploy on Kubernetes
+6. Deploy on Kubernetes
 
