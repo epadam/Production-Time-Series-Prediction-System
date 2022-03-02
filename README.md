@@ -62,7 +62,7 @@ https://conferences.oreilly.com/tensorflow/tf-ca-2019/public/schedule/detail/806
 
 Track the model with the infrastructure setup (dvc, mlflow, tensorboard, dvc to track your data and model)
 
-2. Do you need distributed Training?
+2. Do you need distributed Training? Ray, Horovod, 
 
 3. Do you need active learning?
 
@@ -100,15 +100,19 @@ Tensorflow Lite, OpenVino, Caffe2, ONNX, SavedModel, TorchScript, TensorRT
     
     * Microservice:
     
+    Synchronous, Ansynchronous, Batch
+    
     Seldon Core(outlier detection, explainer, drift detector, adversirial, Auditability), where do you store the explain results?
     
-    Seldon suports A/B test, Canary Deployment, Shadow deployment
+    Seldon suports A/B test, Canary Deployment, Shadow deployment, Multi-Armed Bandits
     
     Monitor your model
     
     Metrics like performance, explainer is going to Prometheus and can be visualized with Grafana
     
     Logging is sending to ELK for further analysis
+    
+    Do you need GPU for your model deployment
     
     b. At the edge:
     
