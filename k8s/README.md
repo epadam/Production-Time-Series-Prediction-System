@@ -1,4 +1,4 @@
-# Environment Setup for Production Level Machine Learning
+# How to build a developing environment for production level machine learning
 
 ## Docker Compose
 
@@ -8,7 +8,7 @@
 
 ### For data labeling
 
-* Deploy Labelme
+* Deploy Labelme, Label Studio
 
 ### Machine Learning
 
@@ -16,7 +16,7 @@ For Development:
 
     1. Using MLflow to track, store and serve your model on your instance, this includes a Mlflow Server, MinIO Server, Artifact Store using minIO on s3, gcs (as model registry), Backstore using local file or database (for meta data)
 
-    Test your mlflow deployment
+    Test your mlflow deployment 
     
     2. Deploy Feature Store
     
@@ -30,25 +30,23 @@ For Production:
 
     2. Monitoring Metrics with Prometheus
 
-### For Data Collecting
-
 
 ## Kubernetes
 
 ### Data Engineering 
 
-1. Kafka with Zookeeper (data collecting)
+1. Kafka with Zookeeper (data collecting), Airflow or Perfect
 
-2. LabelStudio
+2. (Optional) Label Studio
 
-### Machine Learning
+### Machine Learning (services you will use later when developing machine learning models)
 
 1. Kubeflow (it includes Seldon, minIO, Istio, Spark, Jupyter Notebook)
-    Please check here to see how to deploy Kubeflow
-2. MLflow 
-3. Feature Store
-3. ELK
-4. Prometheus with Grafana
+    Please check here to see how to deploy Kubeflow [`link`]()
+2. MLflow (All the models in the platform should be tracked here)
+3. Feature Store, Database
+4. Elastic Search, Kibana, Logish
+5. Prometheus with Grafana
 
 #### Steps:
 
