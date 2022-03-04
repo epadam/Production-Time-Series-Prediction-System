@@ -89,13 +89,15 @@ model as data:
 Tensorflow Lite, OpenVino, Caffe2, ONNX, SavedModel, TorchScript, TensorRT
 
 ## Deploy, Monitor, Logging your Model
+    
+    
+    a. On the cloud:
+    
     Challenges:
     1. Scaling, launch, rolling updates
     2. Optimization
     3. Health Check, recovery
     4. Lantency
-    
-    a. On the cloud:
     
     * Embedded:
     
@@ -114,6 +116,9 @@ Tensorflow Lite, OpenVino, Caffe2, ONNX, SavedModel, TorchScript, TensorRT
     Logging is sending to ELK for further analysis
     
     Do you need GPU for your model deployment
+    
+    SSL
+    authentication
     
     b. At the edge:
     
