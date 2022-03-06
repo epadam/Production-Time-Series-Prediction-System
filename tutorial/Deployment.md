@@ -2,7 +2,7 @@
 
 ## On the Server 
 
-### Microservices
+### Microservices (logging, metrics, explainable, )
 
 * Streamlit/Dash
 
@@ -10,7 +10,15 @@
 
 * Multi-model-server
 
+* Tensorflow Serving/Pytorch Serving
+
 * Seldon Core
+
+#### On Cloud Platform
+
+* GCP
+* AWS
+* Azure
 
 ### Embedded (Your model is not served as a microservice, but embedded in the app)
 
