@@ -4,19 +4,21 @@
 
 ### Microservices
 
-#### Streamlit/Dash
+* Streamlit/Dash
 
-#### Flask/Django
+* Flask/Django/FastAPI
 
-#### Multi Model Serving
+* Multi-model-server
 
-#### Seldon Core
+* Seldon Core
 
-### Embedded
+### Embedded (Your model is not served)
 
-#### Mediapipe
+* [Intel(R) Deep Learning Streamer Pipeline Server](https://github.com/dlstreamer/pipeline-server)
 
-#### Kafka Stream
+* [Mediapipe]()
+
+* [Kafka Stream]()
 
 ## Edge
 
