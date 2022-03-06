@@ -2,7 +2,7 @@
 
 ## On the Server 
 
-### Microservices (logging, metrics, explainable, )
+### Microservices (logging, metrics, Outliers, Drift, Explainers & Statistical Performance)
 
 * Streamlit/Dash
 
@@ -14,7 +14,7 @@
 
 * Seldon Core
 
-#### On Cloud Platform
+#### On Cloud Platform (serverless)
 
 * GCP
 * AWS
