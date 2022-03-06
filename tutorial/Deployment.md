@@ -12,7 +12,7 @@
 
 * Seldon Core
 
-### Embedded (Your model is not served)
+### Embedded (Your model is not served as a microservice, but embedded in the app)
 
 * [Intel(R) Deep Learning Streamer Pipeline Server](https://github.com/dlstreamer/pipeline-server)
 
