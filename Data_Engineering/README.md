@@ -34,3 +34,10 @@
 
 6. Deploy on Kubernetes
 
+## Tools
+
+* Perfect
+* Airflow
+* Kafka
+* Spark
+* ELK
