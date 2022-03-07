@@ -1,6 +1,15 @@
 # Production Level Machine Learning
 
-Don't just train the models on your computer, build a system for it
+Don't just train the models on your computer, you need a system for it.
+
+Think about what you need?
+* notebook environment
+* tracking model and data
+* 
+* deploying functions?
+
+
+
 
 ## Make this specific and move the general to the tutorial
 
