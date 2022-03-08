@@ -90,7 +90,7 @@ Track the model with the infrastructure setup (dvc, mlflow, tensorboard, dvc to 
 
 4. Do you need federated Learning?
 
-### Evaluate, Debugging and compare your model
+### Evaluate, debug and compare your model
     
     b. Debugging and explain your model
     microsoft responsible AI toolkit, LIT, Manifold, Tensorboard
