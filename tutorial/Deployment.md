@@ -22,7 +22,7 @@
 
 * Seldon Core
 
-#### On Cloud Platform (serverless)
+#### Cloud Platform (including serverless)
 
 * GCP
 * AWS
@@ -43,3 +43,7 @@
 #### Mediapipe
 
 ### Raspberry Pi
+
+## Reference
+
+* https://github.com/SeldonIO/alibi-detect
