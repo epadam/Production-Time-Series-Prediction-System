@@ -14,9 +14,9 @@ Think about what you need when you pick up an MLOps platform/toolkit?
 
 
 What you must need:
-* tracking model and dataset
-* Artifact Store
-* 
+* tracking and versioning model and dataset
+* Artifact store
+* UI for visualization
 
 
 
