@@ -1,6 +1,14 @@
 # Deploy your ML models
 
+## Issues
+
+
+
 ## On the Server 
+
+* Buffering
+* parallel 
+* Batch Inference
 
 ### Microservices (logging, metrics, Outliers, Drift, Explainers & Statistical Performance)
 
