@@ -22,11 +22,15 @@
 
 * Seldon Core
 
-#### Cloud Platform (including serverless)
+### Cloud Platform (including serverless)
 
 * GCP
 * AWS
 * Azure
+
+### How to improve inference speed
+
+* 
 
 ### Embedded (Your model is not served as a microservice, but embedded in the app)
 
