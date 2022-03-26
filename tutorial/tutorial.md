@@ -1,3 +1,14 @@
+### Think what you need
+
+Think about what you need when you pick up an MLOps platform/toolkit?
+* You need to real time or offline analysis
+* Which environment will you deploy the model? k8s, local machine, virtual machine?
+* You develop on local laptop or remote cluster?
+* Integrated data processing tools? Do you need Spark, Dask? Airflow, Perfect
+* Do you need autoML training?
+* Do you need distributed training?
+* Do you need retraining pipeline?
+* Integrated deploying serving tools
 
 ### Data Engineering
 
