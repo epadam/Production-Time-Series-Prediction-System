@@ -2,18 +2,10 @@
 
 Don't just train the models on your computer, you need a system for it.
 
-
-
-
 What you must need:
 * tracking and versioning model and dataset
 * Artifact store
 * UI for visualization
-
-
-
-
-## Make this specific and move the general to the tutorial
 
 ## How to setup infrastructure for Production Machine Learning
 
@@ -26,26 +18,10 @@ https://github.com/epadam/production-level-data-analysis/new/master/k8s
 
 Use commercial platform or build your own one with open source
 (Neptune, H2O auto) ,  (Kubeflow, H2O, analyticsZoo)
-
-## What is the target and data type?
-
-   a. Structured Data 
-     
-     - Regression
-
-     - Classification
-    
-   b. Unstructured Data
-      
-     - Text
-
-     - Image, Videos
-
-   c. Multimodal Data
  
 ## Data Collecting Setup
 
-1. Web
+1. Web api or crawling
 2. Internal Data
 
 ## Data processing pipeline infrastructure for your data (Data Engineering, ETL)
@@ -54,7 +30,7 @@ Please see the instruction [here](https://github.com/epadam/production-level-mac
 
 ## How to develop your model
 
-Here we use bike sharing dataset as example, we split the dataset to half and trigger the retraining when upload the other half to gcs. 
+Here we use time series dataset as an example, we split the dataset to half and trigger the retraining when upload the other half to gcs. 
 
 ### Prepare your dataset
 
@@ -62,7 +38,7 @@ Load data from database, feature store or file storage. Do EDA, data augmentatio
 
 ### Select your model
 
-Decision Tree or Deep Learning (check how Uber use Deep learning for EDA)
+RNN, LSTM, Transformer
 
 or you can use AutoML(AutoGloun, AutoKeras)
 
