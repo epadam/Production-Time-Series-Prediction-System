@@ -89,3 +89,25 @@ Example: Stock Price prediction
 2. Model is stored in Registry. Script fetching the models from Registry when building 
 3. Model is stored in Regsitry. App is built and running then download the model. Can fetch or by push method(OTA) 
    (need to restart the app/without restarting the app)
+
+### Questions
+
+A test of deploying multiple ML models in k8s
+
+A simple react interface + multiple Seldon Core models
+
+Expose your API with load balancer/Reverse Proxy? Django manages multiple models how does it communicate How to compare the speed? QPS?
+
+What to use, WebSocket or Rest
+
+There's no need to use django if you don't have any other logics
+
+The frontend can just request api from Seldon Core
+
+For deploying machine learning model, you may need to consider the following:
+
+GPU Lantency monitoring
+
+Use Kafka for buffering Asynchrous Batch Prediction
+
+Scale up or buffering
